@@ -1,25 +1,731 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="es">
 <head>
-  <title>Ejemplo de Inserción de Imagen</title>
- <link rel="stylesheet" src="estilo.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probabilidad — 3.º ESO — Comunidad de Madrid - Colegio Enriqueta Aymer</title>
+<meta name="description" content="Resumen completo de Probabilidad para 3.º ESO según el currículo oficial de la Comunidad de Madrid. Incluye espacio muestral, tipos de sucesos, operaciones, regla de Laplace y probabilidad experimental.">
+<style>
+  /* ── Reset & Base ───────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue-dark:   #0C447C;
+    --blue-mid:    #185FA5;
+    --blue-light:  #E6F1FB;
+    --teal-dark:   #085041;
+    --teal-mid:    #1D9E75;
+    --teal-light:  #E1F5EE;
+    --amber-mid:   #BA7517;
+    --amber-light: #FAEEDA;
+    --purple:      #534AB7;
+    --purple-dark: #3C3489;
+    --purple-light:#EEEDFE;
+    --coral:       #993C1D;
+    --coral-mid:   #D85A30;
+    --coral-light: #FAECE7;
+    --gray-bg:     #F5F4F0;
+    --gray-mid:    #B4B2A9;
+    --gray-text:   #444441;
+    --border:      #D3D1C7;
+    --white:       #ffffff;
+    --text:        #1a1a1a;
+    --radius-sm:   6px;
+    --radius-md:   10px;
+    --radius-lg:   14px;
+    --shadow-sm:   0 1px 4px rgba(0,0,0,.07);
+    --shadow-md:   0 4px 16px rgba(0,0,0,.10);
+    --max-w:       780px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text);
+    background: var(--gray-bg);
+  }
+  a { color: var(--blue-mid); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── Layout ─────────────────────────────────────────────────────── */
+  .page-wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  /* ── Header ─────────────────────────────────────────────────────── */
+  .site-header {
+    background: var(--blue-dark);
+    color: var(--white);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+  }
+  .header-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: .65rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .header-brand { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: rgba(255,255,255,.85); }
+  .header-tag { font-family: 'Arial', sans-serif; font-size: 11px; color: rgba(255,255,255,.55); }
+  .btn-top {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    background: rgba(255,255,255,.12);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition: background .2s;
+    text-decoration: none;
+  }
+  .btn-top:hover { background: rgba(255,255,255,.22); text-decoration: none; }
+
+  /* ── Cover ──────────────────────────────────────────────────────── */
+  .cover {
+    background: var(--blue-light);
+    border-left: 5px solid var(--blue-mid);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: 2rem 2rem 2rem 2.25rem;
+    margin: 2rem 0 1.5rem;
+  }
+  .cover-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: .5rem;
+  }
+  .cover-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+    line-height: 1.2;
+    margin-bottom: .4rem;
+  }
+  .cover-sub {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: var(--blue-mid);
+  }
+
+  /* ── TOC ────────────────────────────────────────────────────────── */
+  .toc {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .toc-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-bottom: .75rem;
+  }
+  .toc-grid { columns: 2; column-gap: 2rem; }
+  @media (max-width: 520px) { .toc-grid { columns: 1; } }
+  .toc-item {
+    font-family: 'Arial', sans-serif;
+    font-size: 13.5px;
+    color: var(--gray-text);
+    padding: 3px 0;
+    display: block;
+    border-bottom: 0.5px solid #eee;
+    break-inside: avoid;
+  }
+  .toc-item:hover { color: var(--blue-mid); }
+  .toc-num { font-weight: 700; color: var(--blue-mid); margin-right: 6px; }
+
+  /* ── Section ────────────────────────────────────────────────────── */
+  .section { margin-bottom: 3rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gray-bg);
+    border-left: 4px solid var(--blue-mid);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: .85rem 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+  .sec-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--blue-mid);
+    color: var(--white);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+  }
+
+  h3.sub {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin: 1.5rem 0 .6rem;
+    padding-bottom: 4px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  p { margin-bottom: .7rem; font-size: 15px; }
+
+  /* ── Boxes ──────────────────────────────────────────────────────── */
+  .def-box {
+    background: var(--blue-light);
+    border-left: 4px solid var(--blue-mid);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: .9rem 1.1rem;
+    margin: .75rem 0;
+  }
+  .box-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+  }
+  .def-box .box-label { color: var(--blue-mid); }
+  .box-text { font-size: 14px; line-height: 1.65; }
+
+  .warn-box {
+    background: var(--amber-light);
+    border-left: 4px solid var(--amber-mid);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: .9rem 1.1rem;
+    margin: .75rem 0;
+  }
+  .warn-box .box-label { color: var(--amber-mid); }
+
+  .formula-box {
+    background: var(--white);
+    border: 2px solid var(--blue-mid);
+    border-radius: var(--radius-md);
+    padding: 1.1rem 1.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .formula-box .box-label { color: var(--blue-mid); }
+  .formula-main {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin: .4rem 0 .3rem;
+  }
+  .formula-note { font-size: 12px; color: var(--gray-text); font-style: italic; }
+
+  /* ── Cards grid ──────────────────────────────────────────────────── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 10px;
+    margin: .75rem 0;
+  }
+  .card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: .85rem 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-name {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .3rem;
+  }
+  .card-def { font-size: 12.5px; color: var(--gray-text); line-height: 1.5; margin-bottom: .3rem; }
+  .card-ex { font-size: 12.5px; color: var(--teal-mid); font-style: italic; }
+
+  /* ── Ops cards ───────────────────────────────────────────────────── */
+  .ops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 10px;
+    margin: .75rem 0;
+  }
+  .op-card {
+    background: var(--gray-bg);
+    border-radius: var(--radius-md);
+    padding: .9rem 1rem;
+    border-top: 3px solid var(--blue-mid);
+    box-shadow: var(--shadow-sm);
+  }
+  .op-name { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; color: var(--blue-dark); margin-bottom: .25rem; }
+  .op-notation { font-family: 'Courier New', monospace; font-size: 12px; color: var(--gray-text); margin-bottom: .3rem; }
+  .op-desc { font-size: 12.5px; color: var(--text); line-height: 1.5; margin-bottom: .3rem; }
+  .op-ex { font-size: 12.5px; color: var(--teal-mid); font-style: italic; }
+
+  /* ── Indep / Dep ──────────────────────────────────────────────────── */
+  .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: .75rem 0; }
+  @media (max-width: 500px) { .cond-grid { grid-template-columns: 1fr; } }
+  .cond-indep { background: var(--blue-light); border: 0.5px solid var(--blue-mid); border-radius: var(--radius-md); padding: .85rem 1rem; }
+  .cond-dep   { background: var(--coral-light); border: 0.5px solid var(--coral-mid); border-radius: var(--radius-md); padding: .85rem 1rem; }
+  .cond-title { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: .3rem; }
+  .cond-indep .cond-title { color: var(--blue-dark); }
+  .cond-dep   .cond-title { color: var(--coral); }
+  .cond-body  { font-size: 13px; line-height: 1.55; margin-bottom: .3rem; }
+  .cond-formula { font-family: 'Courier New', monospace; font-size: 12px; color: var(--gray-text); }
+
+  /* ── Solved box ───────────────────────────────────────────────────── */
+  .solved {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin: .75rem 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .solved .box-label { color: var(--gray-text); }
+  .solved-q { font-family: 'Arial', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: .7rem; line-height: 1.4; }
+  .step { display: flex; gap: 10px; margin-bottom: .4rem; align-items: flex-start; }
+  .step-n {
+    min-width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--blue-mid);
+    color: var(--white);
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-t { font-size: 13.5px; line-height: 1.6; }
+  .step-result {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    background: var(--teal-light);
+    padding: .4rem .9rem;
+    border-radius: var(--radius-sm);
+    margin-top: .6rem;
+    display: inline-block;
+  }
+
+  /* ── Summary ──────────────────────────────────────────────────────── */
+  .summary-bar {
+    background: var(--purple-light);
+    border: 1px solid #AFA9EC;
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .summary-bar h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--purple-dark);
+    margin-bottom: 1rem;
+  }
+  .sum-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 8px;
+  }
+  .sum-pill {
+    background: var(--white);
+    border: 0.5px solid #D3D1C7;
+    border-radius: var(--radius-sm);
+    padding: .55rem .85rem;
+  }
+  .sum-pill strong { display: block; font-family: 'Arial', sans-serif; font-size: 12px; color: var(--purple-dark); margin-bottom: 3px; }
+  .sum-pill span { font-family: 'Courier New', monospace; font-size: 12px; color: var(--gray-text); }
+
+  /* ── Footer ──────────────────────────────────────────────────────── */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 2.5rem;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: #888;
+    border-top: 0.5px solid var(--border);
+    text-align: center;
+  }
+
+  /* ── Print ──────────────────────────────────────────────────────── */
+  @media print {
+    .site-header, .btn-top { display: none; }
+    body { background: white; }
+    .page-wrap { padding: 0 1rem; }
+    .section { page-break-inside: avoid; }
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .cover-title { font-size: 1.5rem; }
+    .formula-main { font-size: 1rem; }
+  }
+</style>
 </head>
-
 <body>
-  <h1>Mi Página Web</h1>
-  <p>Aquí está una imagen:</p>
 
-  <h2> EJEMPLO DE TEXTO EN UNA WEB BLA BLA <p>
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <div>
+      <div class="header-brand">Matemáticas · 3.º ESO</div>
+      <div class="header-tag">Comunidad de Madrid · Currículo oficial</div>
+    </div>
+    <a href="#top" class="btn-top">↑ Inicio</a>
+  </div>
+</header>
 
-      BLA BLA BLA
+<div class="page-wrap">
 
-    <p>
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-label">Resumen completo · Preparación de examen</div>
+    <div class="cover-title">Probabilidad</div>
+    <div class="cover-sub">Nivel 14–15 años · Terminología matemática correcta · Ejemplos resueltos</div>
+  </div>
 
-      BLA BLA BLA </p>
-    </p>
+  <!-- TOC -->
+  <nav class="toc" aria-label="Índice de contenidos">
+    <div class="toc-title">Índice de contenidos</div>
+    <div class="toc-grid">
+      <a class="toc-item" href="#s1"><span class="toc-num">1</span>Espacio muestral</a>
+      <a class="toc-item" href="#s2"><span class="toc-num">2</span>Sucesos y tipos de sucesos</a>
+      <a class="toc-item" href="#s3"><span class="toc-num">3</span>Operaciones con sucesos</a>
+      <a class="toc-item" href="#s4"><span class="toc-num">4</span>Probabilidad — Regla de Laplace</a>
+      <a class="toc-item" href="#s5"><span class="toc-num">5</span>Probabilidad de sucesos compuestos</a>
+      <a class="toc-item" href="#s6"><span class="toc-num">6</span>Probabilidad experimental</a>
+    </div>
+  </nav>
+
+  <!-- ===== SECCIÓN 1 ===== -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <div class="sec-num">1</div>
+      <div class="sec-title">Espacio muestral</div>
+    </div>
+
+    <h3 class="sub">Experimento aleatorio</h3>
+    <div class="def-box">
+      <div class="box-label">Definición</div>
+      <div class="box-text">Un <strong>experimento aleatorio</strong> es aquel cuyo resultado no se puede predecir con certeza antes de realizarlo, aunque sí se conocen todos sus posibles resultados.<br>Ejemplos: lanzar un dado, extraer una carta, lanzar una moneda.</div>
+    </div>
+    <p>Se opone al experimento <em>determinista</em>, en el que el resultado es siempre el mismo (por ejemplo, calcular el área de un triángulo).</p>
+
+    <h3 class="sub">Espacio muestral</h3>
+    <div class="def-box">
+      <div class="box-label">Definición</div>
+      <div class="box-text">El <strong>espacio muestral</strong> (notación: <strong>E</strong> u <strong>Ω</strong>) es el conjunto de <em>todos</em> los posibles resultados de un experimento aleatorio. Cada resultado individual se denomina <strong>suceso elemental</strong>.</div>
+    </div>
+
+    <p>Ejemplos de espacios muestrales:</p>
+    <div class="cards-grid">
+      <div class="card"><div class="card-name">Moneda</div><div class="card-def">E = {cara, cruz}</div><div class="card-ex">2 sucesos elementales</div></div>
+      <div class="card"><div class="card-name">Dado de 6 caras</div><div class="card-def">E = {1, 2, 3, 4, 5, 6}</div><div class="card-ex">6 sucesos elementales</div></div>
+      <div class="card"><div class="card-name">Baraja española (palo)</div><div class="card-def">E = {oros, copas, espadas, bastos}</div><div class="card-ex">4 sucesos elementales</div></div>
+      <div class="card"><div class="card-name">Dos monedas</div><div class="card-def">E = {(C,C),(C,X),(X,C),(X,X)}</div><div class="card-ex">4 sucesos elementales</div></div>
+    </div>
+
+    <div class="warn-box">
+      <div class="box-label">Nota importante</div>
+      <div class="box-text">Al describir el espacio muestral hay que incluir <em>todos</em> los resultados posibles sin repetir ninguno. Omitir alguno llevaría a probabilidades incorrectas.</div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 2 ===== -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <div class="sec-num">2</div>
+      <div class="sec-title">Sucesos y tipos de sucesos</div>
+    </div>
+
+    <div class="def-box">
+      <div class="box-label">Definición general</div>
+      <div class="box-text">Un <strong>suceso</strong> es cualquier subconjunto del espacio muestral; es decir, cualquier colección de posibles resultados del experimento. Se denota con letras mayúsculas: A, B, C…</div>
+    </div>
+
+    <h3 class="sub">Tipos de sucesos</h3>
+    <div class="cards-grid">
+      <div class="card"><div class="card-name">Suceso elemental</div><div class="card-def">Formado por un único resultado del espacio muestral.</div><div class="card-ex">Dado: A = {3}</div></div>
+      <div class="card"><div class="card-name">Suceso compuesto</div><div class="card-def">Formado por dos o más sucesos elementales.</div><div class="card-ex">Dado: A = {2, 4, 6} (pares)</div></div>
+      <div class="card"><div class="card-name">Suceso seguro</div><div class="card-def">Ocurre siempre. Coincide con el espacio muestral completo E.</div><div class="card-ex">Dado: A = {1,2,3,4,5,6}</div></div>
+      <div class="card"><div class="card-name">Suceso imposible</div><div class="card-def">No puede ocurrir nunca. Es el conjunto vacío (∅).</div><div class="card-ex">Dado: A = {} (sacar un 7)</div></div>
+      <div class="card"><div class="card-name">Sucesos compatibles</div><div class="card-def">Pueden ocurrir a la vez; tienen algún resultado en común.</div><div class="card-ex">A={2,4,6} y B={4,5,6}: comparten 4 y 6</div></div>
+      <div class="card"><div class="card-name">Sucesos incompatibles</div><div class="card-def">No pueden ocurrir simultáneamente; no comparten ningún resultado.</div><div class="card-ex">A={1,3,5} y B={2,4,6}</div></div>
+      <div class="card"><div class="card-name">Sucesos contrarios</div><div class="card-def">Incompatibles y juntos agotan todo el espacio muestral. El contrario de A se denota Ā.</div><div class="card-ex">A={1,2,3}, Ā={4,5,6}</div></div>
+    </div>
+
+    <div class="warn-box">
+      <div class="box-label">Distinción clave</div>
+      <div class="box-text">Dos sucesos pueden ser <strong>incompatibles sin ser contrarios</strong> (p. ej., A={1} y B={2} son incompatibles, pero no contrarios porque no cubren todo E). Los contrarios siempre son incompatibles, pero no al revés.</div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 3 ===== -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <div class="sec-num">3</div>
+      <div class="sec-title">Operaciones con sucesos</div>
+    </div>
+
+    <p>Experimento: lanzar un dado. E = {1,2,3,4,5,6}. Usamos <strong>A = {2,4,6}</strong> (pares) y <strong>B = {1,2,3}</strong> (menores que 4).</p>
+
+    <div class="ops-grid">
+      <div class="op-card"><div class="op-name">Unión (A ∪ B)</div><div class="op-notation">A ∪ B</div><div class="op-desc">Ocurre A, o B, o ambos. Todos los elementos de A y de B.</div><div class="op-ex">A ∪ B = {1, 2, 3, 4, 6}</div></div>
+      <div class="op-card"><div class="op-name">Intersección (A ∩ B)</div><div class="op-notation">A ∩ B</div><div class="op-desc">Ocurren A y B a la vez. Solo los elementos comunes.</div><div class="op-ex">A ∩ B = {2}</div></div>
+      <div class="op-card"><div class="op-name">Diferencia (A \ B)</div><div class="op-notation">A \ B</div><div class="op-desc">Ocurre A pero NO ocurre B. Elementos de A que no están en B.</div><div class="op-ex">A \ B = {4, 6}</div></div>
+      <div class="op-card"><div class="op-name">Contrario (Ā)</div><div class="op-notation">Ā = E \ A</div><div class="op-desc">Todo lo que NO es A. Complemento de A en E.</div><div class="op-ex">Ā = {1, 3, 5}</div></div>
+    </div>
+
+    <div class="warn-box">
+      <div class="box-label">Propiedad fundamental del suceso contrario</div>
+      <div class="box-text">Siempre se cumple: <strong>A ∪ Ā = E</strong> (suceso seguro) y <strong>A ∩ Ā = ∅</strong> (suceso imposible). A y Ā son incompatibles y agotan el espacio muestral.</div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 4 ===== -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <div class="sec-num">4</div>
+      <div class="sec-title">Probabilidad de sucesos — Regla de Laplace</div>
+    </div>
+
+    <h3 class="sub">¿Qué es la probabilidad?</h3>
+    <div class="def-box">
+      <div class="box-label">Definición</div>
+      <div class="box-text">La <strong>probabilidad</strong> de un suceso A, P(A), es un número real que mide la mayor o menor posibilidad de que A ocurra. Siempre cumple: <strong>0 ≤ P(A) ≤ 1</strong>.<br>P(A) = 0 → suceso imposible. &nbsp;&nbsp; P(A) = 1 → suceso seguro.</div>
+    </div>
+
+    <h3 class="sub">Condiciones para aplicar la regla de Laplace</h3>
+    <p>1. El número de resultados posibles es <strong>finito</strong>.</p>
+    <p>2. Todos los resultados elementales son <strong>equiprobables</strong> (tienen la misma probabilidad de ocurrir).</p>
+    <p style="font-size:13.5px; color:var(--gray-text)">Ejemplos válidos: dados equilibrados, monedas, barajas bien mezcladas, bolas idénticas en una urna.</p>
+
+    <div class="formula-box">
+      <div class="box-label">Regla de Laplace</div>
+      <div class="formula-main">P(A) = casos favorables a A / casos posibles</div>
+      <div class="formula-note">Los «casos posibles» son el número de sucesos elementales del espacio muestral.</div>
+    </div>
+
+    <h3 class="sub">Propiedades básicas de la probabilidad</h3>
+    <p>· 0 ≤ P(A) ≤ 1 para cualquier suceso A.</p>
+    <p>· P(E) = 1 (el suceso seguro tiene probabilidad 1).</p>
+    <p>· P(∅) = 0 (el suceso imposible tiene probabilidad 0).</p>
+    <p>· P(Ā) = 1 − P(A) (probabilidad del suceso contrario).</p>
+
+    <h3 class="sub">Ejemplos resueltos</h3>
+
+    <div class="solved">
+      <div class="box-label">Ejemplo resuelto 1</div>
+      <div class="solved-q">Se lanza un dado de 6 caras equilibrado. ¿Cuál es la probabilidad de obtener un número par?</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">Espacio muestral: E = {1, 2, 3, 4, 5, 6} → 6 casos posibles.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Suceso A = «número par» = {2, 4, 6} → 3 casos favorables.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t">Aplicamos Laplace: P(A) = 3/6 = 1/2.</div></div>
+      <div><span class="step-result">P(par) = 1/2 = 0,5 = 50 %</span></div>
+    </div>
+
+    <div class="solved">
+      <div class="box-label">Ejemplo resuelto 2</div>
+      <div class="solved-q">Se extrae una carta al azar de una baraja española de 40 cartas. ¿Cuál es la probabilidad de obtener un as?</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">Espacio muestral: 40 cartas → 40 casos posibles.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Suceso A = «sacar un as»: hay 4 ases (uno por palo) → 4 casos favorables.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t">P(A) = 4/40 = 1/10.</div></div>
+      <div><span class="step-result">P(as) = 1/10 = 0,1 = 10 %</span></div>
+    </div>
+
+    <div class="solved">
+      <div class="box-label">Ejemplo resuelto 3</div>
+      <div class="solved-q">Una bolsa tiene 3 bolas rojas, 2 azules y 5 verdes. Se extrae una al azar. ¿Cuál es la probabilidad de que sea azul? ¿Y de que NO sea verde?</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">Total: 3 + 2 + 5 = 10 bolas → 10 casos posibles.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">P(azul) = 2/10 = 1/5.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t">P(verde) = 5/10 = 1/2. Por tanto, P(no verde) = 1 − 1/2 = 1/2.</div></div>
+      <div><span class="step-result">P(azul) = 1/5 &nbsp;·&nbsp; P(no verde) = 1/2</span></div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 5 ===== -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <div class="sec-num">5</div>
+      <div class="sec-title">Probabilidad de sucesos compuestos</div>
+    </div>
+
+    <h3 class="sub">Probabilidad de la unión: P(A ∪ B)</h3>
+    <div class="formula-box">
+      <div class="box-label">Fórmula general — unión</div>
+      <div class="formula-main">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</div>
+      <div class="formula-note">Se resta P(A ∩ B) para no contar dos veces los resultados comunes.</div>
+    </div>
+
+    <p>Si A y B son <strong>incompatibles</strong>, P(A ∩ B) = 0 y la fórmula se simplifica:</p>
+    <div class="formula-box">
+      <div class="box-label">Caso especial — sucesos incompatibles</div>
+      <div class="formula-main">P(A ∪ B) = P(A) + P(B)</div>
+      <div class="formula-note">Solo válido cuando A y B no pueden ocurrir a la vez.</div>
+    </div>
+
+    <h3 class="sub">Probabilidad de la intersección: P(A ∩ B)</h3>
+    <p>Hay que distinguir si los sucesos son <strong>independientes</strong> o <strong>dependientes</strong>:</p>
+
+    <div class="cond-grid">
+      <div class="cond-indep">
+        <div class="cond-title">Sucesos independientes</div>
+        <div class="cond-body">El resultado de uno <strong>no afecta</strong> al del otro.</div>
+        <div class="cond-formula">P(A ∩ B) = P(A) · P(B)</div>
+      </div>
+      <div class="cond-dep">
+        <div class="cond-title">Sucesos dependientes</div>
+        <div class="cond-body">El resultado de uno <strong>sí influye</strong> en el del otro.</div>
+        <div class="cond-formula">No se aplica P(A)·P(B)</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <div class="box-label">Importante</div>
+      <div class="box-text">La fórmula P(A ∩ B) = P(A)·P(B) <em>solo es válida para sucesos independientes</em>. En 3.º ESO, los problemas de sucesos dependientes se resuelven con Laplace sobre el espacio muestral combinado o multiplicando las probabilidades condicionadas de forma intuitiva.</div>
+    </div>
+
+    <h3 class="sub">¿Cuándo son independientes dos sucesos?</h3>
+    <p>· Lanzar dos dados (o dos monedas): cada lanzamiento no afecta al otro.</p>
+    <p>· Extraer una carta, <strong>devolverla</strong> al mazo y extraer otra: los intentos son independientes.</p>
+    <p>· Sin devolución: los sucesos son <strong>dependientes</strong> (el espacio muestral cambia).</p>
+
+    <h3 class="sub">Ejemplos resueltos</h3>
+
+    <div class="solved">
+      <div class="box-label">Ejemplo resuelto — Unión (sucesos compatibles)</div>
+      <div class="solved-q">Dado de 6 caras. A = número par = {2,4,6}. B = número mayor que 4 = {5,6}. Calcular P(A ∪ B).</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">P(A) = 3/6 = 1/2.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">P(B) = 2/6 = 1/3.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t">A ∩ B = {6} → P(A ∩ B) = 1/6. (Compatibles: el 6 es par y mayor que 4.)</div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-t">P(A ∪ B) = 1/2 + 1/3 − 1/6 = 3/6 + 2/6 − 1/6 = 4/6 = 2/3.</div></div>
+      <div><span class="step-result">P(A ∪ B) = 2/3 ≈ 0,667</span></div>
+    </div>
+
+    <div class="solved">
+      <div class="box-label">Ejemplo resuelto — Intersección (sucesos independientes)</div>
+      <div class="solved-q">Se lanza una moneda y un dado equilibrados. ¿Cuál es la probabilidad de obtener cara y número par?</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">A = «cara» → P(A) = 1/2.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">B = «número par» → P(B) = 3/6 = 1/2.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t">Los sucesos son independientes (un lanzamiento no afecta al otro).</div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-t">P(A ∩ B) = P(A) · P(B) = 1/2 · 1/2 = 1/4.</div></div>
+      <div><span class="step-result">P(cara y par) = 1/4 = 0,25 = 25 %</span></div>
+    </div>
+
+    <div class="solved">
+      <div class="box-label">Ejemplo resuelto — Sucesos dependientes (sin reposición)</div>
+      <div class="solved-q">Una urna tiene 3 bolas rojas y 2 azules. Se extraen dos bolas SIN reposición. ¿Cuál es la probabilidad de que las dos sean rojas?</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">1.ª extracción: P(1.ª roja) = 3/5.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Si la 1.ª es roja, quedan 2 rojas y 2 azules: P(2.ª roja | 1.ª roja) = 2/4 = 1/2.</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-t">Sucesos dependientes: P(ambas rojas) = 3/5 · 2/4 = 6/20 = 3/10.</div></div>
+      <div><span class="step-result">P(dos rojas) = 3/10 = 0,3 = 30 %</span></div>
+    </div>
+  </section>
+
+  <!-- ===== SECCIÓN 6 ===== -->
+  <section class="section" id="s6">
+    <div class="section-header">
+      <div class="sec-num">6</div>
+      <div class="sec-title">Probabilidad experimental</div>
+    </div>
+
+    <h3 class="sub">Diferencia entre probabilidad teórica y experimental</h3>
+    <p>La <strong>probabilidad teórica</strong> se calcula mediante razonamiento (Laplace), sin necesidad de realizar el experimento. Requiere equiprobabilidad.</p>
+    <p>La <strong>probabilidad experimental</strong> se obtiene realizando el experimento muchas veces y observando con qué frecuencia ocurre el suceso.</p>
+
+    <h3 class="sub">Frecuencia absoluta y frecuencia relativa</h3>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-name">Frecuencia absoluta (f<sub>a</sub>)</div>
+        <div class="card-def">Número de veces que ha ocurrido el suceso A en n repeticiones del experimento.</div>
+        <div class="card-ex">Moneda, 100 lanzamientos, 48 caras: f<sub>a</sub> = 48</div>
+      </div>
+      <div class="card">
+        <div class="card-name">Frecuencia relativa (f<sub>r</sub>)</div>
+        <div class="card-def">Cociente entre la frecuencia absoluta y el total n. Siempre entre 0 y 1.</div>
+        <div class="card-ex">f<sub>r</sub> = 48/100 = 0,48</div>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="box-label">Probabilidad experimental (frecuencia relativa)</div>
+      <div class="formula-main">P<sub>exp</sub>(A) = frecuencia absoluta de A / número total de repeticiones (n)</div>
+      <div class="formula-note">La probabilidad experimental mejora como estimación cuanto mayor sea el número de repeticiones.</div>
+    </div>
+
+    <h3 class="sub">Ley de los grandes números</h3>
+    <div class="def-box">
+      <div class="box-label">Principio fundamental</div>
+      <div class="box-text">Al aumentar el número de repeticiones del experimento, la frecuencia relativa se aproxima progresivamente a la probabilidad teórica. Este hecho se conoce como la <strong>ley de los grandes números</strong>.</div>
+    </div>
+
+    <h3 class="sub">Ejemplos cotidianos</h3>
+
+    <div class="solved">
+      <div class="box-label">Ejemplo 1 — Moneda</div>
+      <div class="solved-q">Se lanza una moneda 200 veces y se obtienen 94 caras.</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">f<sub>a</sub>(cara) = 94. &nbsp; f<sub>r</sub>(cara) = 94/200 = 0,47.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Probabilidad teórica = 1/2 = 0,5. La experimental (0,47) se aproxima bastante con 200 lanzamientos.</div></div>
+      <div><span class="step-result">Con más lanzamientos, la diferencia se reduciría aún más.</span></div>
+    </div>
+
+    <div class="solved">
+      <div class="box-label">Ejemplo 2 — Dado en clase</div>
+      <div class="solved-q">Un alumno lanza un dado 60 veces y obtiene el resultado 5 exactamente 12 veces.</div>
+      <div class="step"><div class="step-n">1</div><div class="step-t">P<sub>exp</sub>(5) = 12/60 = 1/5 = 0,2.</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-t">Probabilidad teórica = 1/6 ≈ 0,167. La diferencia es normal con 60 lanzamientos.</div></div>
+      <div><span class="step-result">Con más repeticiones, la frecuencia relativa se acercaría a 1/6.</span></div>
+    </div>
+
+    <div class="warn-box">
+      <div class="box-label">Distinción clave para el examen</div>
+      <div class="box-text">La probabilidad experimental no coincide exactamente con la teórica en un experimento concreto, pero <strong>tiende a ella al aumentar n</strong>. No son lo mismo, aunque se aproximen.</div>
+    </div>
+  </section>
+
+  <!-- RESUMEN FINAL -->
+  <div class="summary-bar">
+    <h3>Resumen de fórmulas esenciales — Probabilidad 3.º ESO</h3>
+    <div class="sum-grid">
+      <div class="sum-pill"><strong>Laplace</strong><span>P(A) = favorables / posibles</span></div>
+      <div class="sum-pill"><strong>Contrario</strong><span>P(Ā) = 1 − P(A)</span></div>
+      <div class="sum-pill"><strong>Unión general</strong><span>P(A∪B) = P(A)+P(B)−P(A∩B)</span></div>
+      <div class="sum-pill"><strong>Unión incompatibles</strong><span>P(A∪B) = P(A)+P(B)</span></div>
+      <div class="sum-pill"><strong>Intersección independ.</strong><span>P(A∩B) = P(A)·P(B)</span></div>
+      <div class="sum-pill"><strong>P. experimental</strong><span>P_exp = f_abs / n</span></div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<footer>
+  Matemáticas · 3.º ESO · Comunidad de Madrid — Probabilidad · Resumen didáctico
+</footer>
 
 </body>
-
 </html>
