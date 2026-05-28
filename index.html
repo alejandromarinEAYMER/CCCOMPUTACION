@@ -3,729 +3,1387 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Probabilidad — 3.º ESO — Comunidad de Madrid - Colegio Enriqueta Aymer</title>
-<meta name="description" content="Resumen completo de Probabilidad para 3.º ESO según el currículo oficial de la Comunidad de Madrid. Incluye espacio muestral, tipos de sucesos, operaciones, regla de Laplace y probabilidad experimental.">
+<title>Matemáticas 3.º ESO — Resumen Completo | Madrid</title>
+<meta name="description" content="Resumen interactivo completo de Matemáticas 3.º ESO para la Comunidad de Madrid. Álgebra, Funciones, Geometría, Estadística, Probabilidad y más.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  /* ── Reset & Base ───────────────────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --blue-dark:   #0C447C;
-    --blue-mid:    #185FA5;
-    --blue-light:  #E6F1FB;
-    --teal-dark:   #085041;
-    --teal-mid:    #1D9E75;
-    --teal-light:  #E1F5EE;
-    --amber-mid:   #BA7517;
-    --amber-light: #FAEEDA;
-    --purple:      #534AB7;
-    --purple-dark: #3C3489;
-    --purple-light:#EEEDFE;
-    --coral:       #993C1D;
-    --coral-mid:   #D85A30;
-    --coral-light: #FAECE7;
-    --gray-bg:     #F5F4F0;
-    --gray-mid:    #B4B2A9;
-    --gray-text:   #444441;
-    --border:      #D3D1C7;
-    --white:       #ffffff;
-    --text:        #1a1a1a;
-    --radius-sm:   6px;
-    --radius-md:   10px;
-    --radius-lg:   14px;
-    --shadow-sm:   0 1px 4px rgba(0,0,0,.07);
-    --shadow-md:   0 4px 16px rgba(0,0,0,.10);
-    --max-w:       780px;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--text);
-    background: var(--gray-bg);
-  }
-  a { color: var(--blue-mid); text-decoration: none; }
-  a:hover { text-decoration: underline; }
+:root {
+  --bg:#F7F6F2; --surface:#FFFFFF; --surface2:#F0EEE8; --border:#E2DDD5;
+  --blue:#2563EB; --blue-l:#DBEAFE; --blue-d:#1E40AF;
+  --teal:#0D9488; --teal-l:#CCFBF1; --teal-d:#0F766E;
+  --amber:#D97706; --amber-l:#FEF3C7; --amber-d:#92400E;
+  --rose:#E11D48; --rose-l:#FFE4E6; --rose-d:#9F1239;
+  --violet:#7C3AED; --violet-l:#EDE9FE; --violet-d:#4C1D95;
+  --green:#16A34A; --green-l:#DCFCE7; --green-d:#14532D;
+  --orange:#EA580C; --orange-l:#FFEDD5; --orange-d:#7C2D12;
+  --slate:#475569; --slate-d:#0F172A;
+  --pink:#DB2777; --pink-l:#FCE7F3; --pink-d:#831843;
+  --cyan:#0891B2; --cyan-l:#CFFAFE; --cyan-d:#164E63;
+  --text:#1C1917; --text2:#57534E; --text3:#A8A29E;
+  --radius:12px; --radius-lg:18px;
+  --shadow:0 2px 12px rgba(0,0,0,.07); --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+  --font:'Nunito',sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;display:flex;min-height:100vh;}
 
-  /* ── Layout ─────────────────────────────────────────────────────── */
-  .page-wrap {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 1.5rem 4rem;
-  }
+/* SIDEBAR */
+#sidebar{width:235px;flex-shrink:0;background:var(--slate-d);color:#fff;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:200;display:flex;flex-direction:column;transition:transform .3s ease;}
+#sidebar-logo{padding:1.5rem 1.25rem 1rem;border-bottom:1px solid rgba(255,255,255,.1);}
+#sidebar-logo .logo-badge{display:inline-block;background:var(--blue);color:#fff;font-size:10px;font-weight:800;letter-spacing:.06em;padding:3px 8px;border-radius:20px;margin-bottom:.5rem;}
+#sidebar-logo h1{font-size:1.05rem;font-weight:800;color:#fff;line-height:1.3;}
+#sidebar-logo p{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px;}
+.nav-section-label{font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:.9rem 1.25rem .3rem;}
+.nav-btn{display:flex;align-items:center;gap:9px;padding:.55rem 1.25rem;font-family:var(--font);font-size:13px;font-weight:600;color:rgba(255,255,255,.7);background:none;border:none;cursor:pointer;width:100%;text-align:left;transition:all .18s;position:relative;}
+.nav-btn .nav-icon{font-size:15px;min-width:20px;}
+.nav-btn:hover{color:#fff;background:rgba(255,255,255,.07);}
+.nav-btn.active{color:#fff;background:rgba(255,255,255,.12);font-weight:700;}
+.nav-btn.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0 3px 3px 0;}
+.nav-btn[data-tab="numeros"].active::before{background:var(--blue);}
+.nav-btn[data-tab="algebra"].active::before{background:var(--violet);}
+.nav-btn[data-tab="funciones"].active::before{background:var(--teal);}
+.nav-btn[data-tab="geometria"].active::before{background:var(--orange);}
+.nav-btn[data-tab="vectores"].active::before{background:var(--cyan);}
+.nav-btn[data-tab="semejanza"].active::before{background:var(--rose);}
+.nav-btn[data-tab="estadistica"].active::before{background:var(--green);}
+.nav-btn[data-tab="probabilidad"].active::before{background:var(--amber);}
+.nav-btn[data-tab="ejercicios"].active::before{background:var(--pink);}
 
-  /* ── Header ─────────────────────────────────────────────────────── */
-  .site-header {
-    background: var(--blue-dark);
-    color: var(--white);
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: var(--shadow-md);
-  }
-  .header-inner {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: .65rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  .header-brand { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: rgba(255,255,255,.85); }
-  .header-tag { font-family: 'Arial', sans-serif; font-size: 11px; color: rgba(255,255,255,.55); }
-  .btn-top {
-    font-family: 'Arial', sans-serif;
-    font-size: 11px;
-    background: rgba(255,255,255,.12);
-    color: var(--white);
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 20px;
-    padding: 4px 12px;
-    cursor: pointer;
-    transition: background .2s;
-    text-decoration: none;
-  }
-  .btn-top:hover { background: rgba(255,255,255,.22); text-decoration: none; }
+/* MAIN */
+#main{margin-left:235px;flex:1;min-height:100vh;}
+#topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+#topbar-title{font-size:1rem;font-weight:800;color:var(--text);}
+#topbar-sub{font-size:12px;color:var(--text3);}
+#hamburger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text);}
 
-  /* ── Cover ──────────────────────────────────────────────────────── */
-  .cover {
-    background: var(--blue-light);
-    border-left: 5px solid var(--blue-mid);
-    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-    padding: 2rem 2rem 2rem 2.25rem;
-    margin: 2rem 0 1.5rem;
-  }
-  .cover-label {
-    font-family: 'Arial', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--blue-mid);
-    margin-bottom: .5rem;
-  }
-  .cover-title {
-    font-family: 'Arial', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--blue-dark);
-    line-height: 1.2;
-    margin-bottom: .4rem;
-  }
-  .cover-sub {
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
-    color: var(--blue-mid);
-  }
+.tab-content{display:none;padding:2rem;max-width:920px;}
+.tab-content.active{display:block;}
 
-  /* ── TOC ────────────────────────────────────────────────────────── */
-  .toc {
-    background: var(--white);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
-  }
-  .toc-title {
-    font-family: 'Arial', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .07em;
-    text-transform: uppercase;
-    color: var(--gray-text);
-    margin-bottom: .75rem;
-  }
-  .toc-grid { columns: 2; column-gap: 2rem; }
-  @media (max-width: 520px) { .toc-grid { columns: 1; } }
-  .toc-item {
-    font-family: 'Arial', sans-serif;
-    font-size: 13.5px;
-    color: var(--gray-text);
-    padding: 3px 0;
-    display: block;
-    border-bottom: 0.5px solid #eee;
-    break-inside: avoid;
-  }
-  .toc-item:hover { color: var(--blue-mid); }
-  .toc-num { font-weight: 700; color: var(--blue-mid); margin-right: 6px; }
+/* PAGE HEADER */
+.page-header{margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:2px solid var(--border);}
+.page-header .ph-tag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem;}
+.page-header h2{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:.3rem;}
+.page-header p{font-size:14px;color:var(--text2);}
 
-  /* ── Section ────────────────────────────────────────────────────── */
-  .section { margin-bottom: 3rem; }
+/* SECTION HEADING */
+.sh{font-size:1.05rem;font-weight:800;margin:1.8rem 0 .8rem;display:flex;align-items:center;gap:8px;}
+.sh::after{content:'';flex:1;height:1px;background:var(--border);}
 
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--gray-bg);
-    border-left: 4px solid var(--blue-mid);
-    border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    padding: .85rem 1.1rem;
-    margin-bottom: 1.25rem;
-  }
-  .sec-num {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: var(--blue-mid);
-    color: var(--white);
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .sec-title {
-    font-family: 'Arial', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--blue-dark);
-  }
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:.75rem 0;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:.75rem 0;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:.75rem 0;}
+@media(max-width:680px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
 
-  h3.sub {
-    font-family: 'Arial', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--blue-dark);
-    margin: 1.5rem 0 .6rem;
-    padding-bottom: 4px;
-    border-bottom: 0.5px solid var(--border);
-  }
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;box-shadow:var(--shadow);}
+.card-title{font-size:13px;font-weight:800;margin-bottom:.3rem;}
+.card-body{font-size:13px;color:var(--text2);line-height:1.55;}
+.card-ex{font-size:12.5px;margin-top:.35rem;font-style:italic;}
 
-  p { margin-bottom: .7rem; font-size: 15px; }
+/* DEF BOX */
+.def-box{border-left:4px solid;border-radius:0 var(--radius) var(--radius) 0;padding:.85rem 1.1rem;margin:.75rem 0;}
+.def-box .db-label{font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.35rem;}
+.def-box .db-text{font-size:13.5px;line-height:1.65;}
 
-  /* ── Boxes ──────────────────────────────────────────────────────── */
-  .def-box {
-    background: var(--blue-light);
-    border-left: 4px solid var(--blue-mid);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    padding: .9rem 1.1rem;
-    margin: .75rem 0;
-  }
-  .box-label {
-    font-family: 'Arial', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .07em;
-    text-transform: uppercase;
-    margin-bottom: .4rem;
-  }
-  .def-box .box-label { color: var(--blue-mid); }
-  .box-text { font-size: 14px; line-height: 1.65; }
+/* FORMULA */
+.formula{background:var(--surface);border:2px solid;border-radius:var(--radius);padding:1rem 1.5rem;margin:.85rem 0;text-align:center;}
+.formula .f-label{font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem;}
+.formula .f-main{font-family:var(--mono);font-size:1.05rem;font-weight:600;margin:.2rem 0;}
+.formula .f-note{font-size:11.5px;color:var(--text2);margin-top:.3rem;font-style:italic;}
 
-  .warn-box {
-    background: var(--amber-light);
-    border-left: 4px solid var(--amber-mid);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    padding: .9rem 1.1rem;
-    margin: .75rem 0;
-  }
-  .warn-box .box-label { color: var(--amber-mid); }
+/* TIP BOX */
+.tip-box{border-left:4px solid;border-radius:0 var(--radius) var(--radius) 0;padding:.8rem 1rem;margin:.75rem 0;}
+.tip-box .tb-label{font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.3rem;}
+.tip-box .tb-text{font-size:13px;line-height:1.6;}
 
-  .formula-box {
-    background: var(--white);
-    border: 2px solid var(--blue-mid);
-    border-radius: var(--radius-md);
-    padding: 1.1rem 1.5rem;
-    margin: 1rem 0;
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-  }
-  .formula-box .box-label { color: var(--blue-mid); }
-  .formula-main {
-    font-family: 'Courier New', monospace;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--blue-dark);
-    margin: .4rem 0 .3rem;
-  }
-  .formula-note { font-size: 12px; color: var(--gray-text); font-style: italic; }
+/* SOLVED */
+.solved{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin:.75rem 0;box-shadow:var(--shadow);}
+.solved .s-label{font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;margin-bottom:.4rem;}
+.solved .s-q{font-size:14px;font-weight:700;margin-bottom:.65rem;line-height:1.4;}
+.step{display:flex;gap:9px;margin-bottom:.35rem;align-items:flex-start;}
+.step-n{min-width:22px;height:22px;border-radius:50%;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-t{font-size:13.5px;line-height:1.6;}
+.step-r{font-size:13.5px;font-weight:800;padding:.35rem .85rem;border-radius:var(--radius);display:inline-block;margin-top:.5rem;}
 
-  /* ── Cards grid ──────────────────────────────────────────────────── */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 10px;
-    margin: .75rem 0;
-  }
-  .card {
-    background: var(--white);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: .85rem 1rem;
-    box-shadow: var(--shadow-sm);
-  }
-  .card-name {
-    font-family: 'Arial', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: .3rem;
-  }
-  .card-def { font-size: 12.5px; color: var(--gray-text); line-height: 1.5; margin-bottom: .3rem; }
-  .card-ex { font-size: 12.5px; color: var(--teal-mid); font-style: italic; }
+/* COLORS */
+.c-blue{color:var(--blue);} .c-teal{color:var(--teal);} .c-violet{color:var(--violet);}
+.c-amber{color:var(--amber);} .c-rose{color:var(--rose);} .c-green{color:var(--green);}
+.c-orange{color:var(--orange);} .c-cyan{color:var(--cyan);} .c-pink{color:var(--pink);}
+.bg-blue{background:var(--blue-l);} .bg-teal{background:var(--teal-l);}
+.bg-violet{background:var(--violet-l);} .bg-amber{background:var(--amber-l);}
+.bg-rose{background:var(--rose-l);} .bg-green{background:var(--green-l);}
+.bg-orange{background:var(--orange-l);} .bg-cyan{background:var(--cyan-l);}
+.bg-pink{background:var(--pink-l);}
+.border-blue{border-color:var(--blue);} .border-teal{border-color:var(--teal);}
+.border-violet{border-color:var(--violet);} .border-amber{border-color:var(--amber);}
+.border-rose{border-color:var(--rose);} .border-green{border-color:var(--green);}
+.border-orange{border-color:var(--orange);} .border-cyan{border-color:var(--cyan);}
+.border-pink{border-color:var(--pink);}
 
-  /* ── Ops cards ───────────────────────────────────────────────────── */
-  .ops-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 10px;
-    margin: .75rem 0;
-  }
-  .op-card {
-    background: var(--gray-bg);
-    border-radius: var(--radius-md);
-    padding: .9rem 1rem;
-    border-top: 3px solid var(--blue-mid);
-    box-shadow: var(--shadow-sm);
-  }
-  .op-name { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; color: var(--blue-dark); margin-bottom: .25rem; }
-  .op-notation { font-family: 'Courier New', monospace; font-size: 12px; color: var(--gray-text); margin-bottom: .3rem; }
-  .op-desc { font-size: 12.5px; color: var(--text); line-height: 1.5; margin-bottom: .3rem; }
-  .op-ex { font-size: 12.5px; color: var(--teal-mid); font-style: italic; }
+/* SUM STRIP */
+.sum-strip{border-radius:var(--radius-lg);padding:1.2rem 1.5rem;margin-top:2rem;}
+.sum-strip h4{font-size:13px;font-weight:800;margin-bottom:.8rem;}
+.sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;}
+.sum-pill{background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:.5rem .8rem;}
+.sum-pill strong{display:block;font-size:11px;font-weight:800;margin-bottom:2px;}
+.sum-pill span{font-family:var(--mono);font-size:11px;color:var(--text2);}
 
-  /* ── Indep / Dep ──────────────────────────────────────────────────── */
-  .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: .75rem 0; }
-  @media (max-width: 500px) { .cond-grid { grid-template-columns: 1fr; } }
-  .cond-indep { background: var(--blue-light); border: 0.5px solid var(--blue-mid); border-radius: var(--radius-md); padding: .85rem 1rem; }
-  .cond-dep   { background: var(--coral-light); border: 0.5px solid var(--coral-mid); border-radius: var(--radius-md); padding: .85rem 1rem; }
-  .cond-title { font-family: 'Arial', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: .3rem; }
-  .cond-indep .cond-title { color: var(--blue-dark); }
-  .cond-dep   .cond-title { color: var(--coral); }
-  .cond-body  { font-size: 13px; line-height: 1.55; margin-bottom: .3rem; }
-  .cond-formula { font-family: 'Courier New', monospace; font-size: 12px; color: var(--gray-text); }
+/* TABLES */
+.t-wrap{overflow-x:auto;margin:.75rem 0;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--surface2);font-weight:800;padding:.55rem .75rem;text-align:left;border-bottom:2px solid var(--border);}
+td{padding:.5rem .75rem;border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--surface2);}
 
-  /* ── Solved box ───────────────────────────────────────────────────── */
-  .solved {
-    background: var(--white);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 1rem 1.25rem;
-    margin: .75rem 0;
-    box-shadow: var(--shadow-sm);
-  }
-  .solved .box-label { color: var(--gray-text); }
-  .solved-q { font-family: 'Arial', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: .7rem; line-height: 1.4; }
-  .step { display: flex; gap: 10px; margin-bottom: .4rem; align-items: flex-start; }
-  .step-n {
-    min-width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--blue-mid);
-    color: var(--white);
-    font-family: 'Arial', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .step-t { font-size: 13.5px; line-height: 1.6; }
-  .step-result {
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--teal-dark);
-    background: var(--teal-light);
-    padding: .4rem .9rem;
-    border-radius: var(--radius-sm);
-    margin-top: .6rem;
-    display: inline-block;
-  }
+/* EXERCISES */
+.ex-section{margin-bottom:2.5rem;}
+.ex-section-header{display:flex;align-items:center;gap:10px;background:var(--surface2);border-radius:var(--radius);padding:.75rem 1rem;margin-bottom:1rem;border-left:4px solid;}
+.ex-section-header h3{font-size:15px;font-weight:800;}
+.ex-section-header .ex-count{margin-left:auto;font-size:11px;font-weight:700;opacity:.6;}
+.ex-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .2s;}
+.ex-item:hover{box-shadow:var(--shadow-lg);}
+.ex-q{display:flex;align-items:flex-start;gap:10px;padding:.85rem 1rem;cursor:pointer;user-select:none;}
+.ex-num{min-width:26px;height:26px;border-radius:50%;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ex-text{font-size:14px;line-height:1.55;flex:1;padding-top:2px;}
+.ex-toggle{font-size:18px;color:var(--text3);transition:transform .2s;flex-shrink:0;margin-top:2px;}
+.ex-item.open .ex-toggle{transform:rotate(180deg);}
+.ex-ans{display:none;background:var(--surface2);padding:.6rem 1rem .75rem 2.8rem;font-size:13.5px;border-top:1px solid var(--border);}
+.ex-ans .ans-label{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:.25rem;}
+.ex-ans .ans-val{font-weight:800;font-family:var(--mono);font-size:13px;}
+.ex-item.open .ex-ans{display:block;}
+.diff{font-size:10px;font-weight:800;padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle;}
+.diff-1{background:#DCFCE7;color:#16A34A;}
+.diff-2{background:#FEF3C7;color:#D97706;}
+.diff-3{background:#FFE4E6;color:#E11D48;}
 
-  /* ── Summary ──────────────────────────────────────────────────────── */
-  .summary-bar {
-    background: var(--purple-light);
-    border: 1px solid #AFA9EC;
-    border-radius: var(--radius-lg);
-    padding: 1.25rem 1.5rem;
-    margin-top: 2rem;
-  }
-  .summary-bar h3 {
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--purple-dark);
-    margin-bottom: 1rem;
-  }
-  .sum-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 8px;
-  }
-  .sum-pill {
-    background: var(--white);
-    border: 0.5px solid #D3D1C7;
-    border-radius: var(--radius-sm);
-    padding: .55rem .85rem;
-  }
-  .sum-pill strong { display: block; font-family: 'Arial', sans-serif; font-size: 12px; color: var(--purple-dark); margin-bottom: 3px; }
-  .sum-pill span { font-family: 'Courier New', monospace; font-size: 12px; color: var(--gray-text); }
+/* VECTOR notation — plain text, no unicode combining chars */
+.vv{font-weight:800;text-decoration:overline;font-style:normal;}
 
-  /* ── Footer ──────────────────────────────────────────────────────── */
-  footer {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 1.5rem 1.5rem 2.5rem;
-    font-family: 'Arial', sans-serif;
-    font-size: 12px;
-    color: #888;
-    border-top: 0.5px solid var(--border);
-    text-align: center;
-  }
-
-  /* ── Print ──────────────────────────────────────────────────────── */
-  @media print {
-    .site-header, .btn-top { display: none; }
-    body { background: white; }
-    .page-wrap { padding: 0 1rem; }
-    .section { page-break-inside: avoid; }
-  }
-
-  /* ── Responsive ──────────────────────────────────────────────────── */
-  @media (max-width: 600px) {
-    .cover-title { font-size: 1.5rem; }
-    .formula-main { font-size: 1rem; }
-  }
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%);}
+  #sidebar.open{transform:translateX(0);}
+  #main{margin-left:0;}
+  #hamburger{display:block;}
+  .tab-content{padding:1.25rem 1rem;}
+  .page-header h2{font-size:1.5rem;}
+  #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:199;}
+  #overlay.show{display:block;}
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.tab-content.active{animation:fadeIn .22s ease;}
+#progress-bar{height:3px;background:linear-gradient(90deg,var(--blue),var(--violet));position:fixed;top:0;left:0;z-index:9999;transition:width .1s;}
+p{margin-bottom:.5rem;}
 </style>
 </head>
 <body>
+<div id="progress-bar" style="width:0%"></div>
+<div id="overlay"></div>
 
-<header class="site-header" id="top">
-  <div class="header-inner">
-    <div>
-      <div class="header-brand">Matemáticas · 3.º ESO</div>
-      <div class="header-tag">Comunidad de Madrid · Colegio Enriqueta Aymer</div>
-    </div>
-    <a href="#top" class="btn-top">↑ Inicio</a>
+<nav id="sidebar">
+  <div id="sidebar-logo">
+    <div class="logo-badge">3.&ordm; ESO &middot; Madrid</div>
+    <h1>Matem&aacute;ticas<br>Resumen Global</h1>
+    <p>Curr&iacute;culo oficial LOMLOE</p>
   </div>
-</header>
+  <div class="nav-section-label">Contenidos</div>
+  <button class="nav-btn active" data-tab="numeros"><span class="nav-icon">&#x1F522;</span> N&uacute;meros y Operaciones</button>
+  <button class="nav-btn" data-tab="algebra"><span class="nav-icon">&#x270F;&#xFE0F;</span> &Aacute;lgebra</button>
+  <button class="nav-btn" data-tab="funciones"><span class="nav-icon">&#x1F4C8;</span> Funciones</button>
+  <button class="nav-btn" data-tab="geometria"><span class="nav-icon">&#x1F4D0;</span> Geometr&iacute;a</button>
+  <button class="nav-btn" data-tab="vectores"><span class="nav-icon">&#x27A1;&#xFE0F;</span> Vectores</button>
+  <button class="nav-btn" data-tab="semejanza"><span class="nav-icon">&#x1F52D;</span> Semejanza</button>
+  <button class="nav-btn" data-tab="estadistica"><span class="nav-icon">&#x1F4CA;</span> Estad&iacute;stica</button>
+  <button class="nav-btn" data-tab="probabilidad"><span class="nav-icon">&#x1F3B2;</span> Probabilidad</button>
+  <div class="nav-section-label" style="margin-top:.5rem">Pr&aacute;ctica</div>
+  <button class="nav-btn" data-tab="ejercicios"><span class="nav-icon">&#x1F4AA;</span> Ejercicios Finales</button>
+</nav>
 
-<div class="page-wrap">
-
-  <!-- COVER -->
-  <div class="cover">
-    <div class="cover-label">Resumen completo · Preparación de examen</div>
-    <div class="cover-title">Probabilidad</div>
-    <div class="cover-sub">Nivel 3º ESO · Ejemplos resueltos</div>
+<div id="main">
+<div id="topbar">
+  <button id="hamburger" onclick="toggleSidebar()">&#9776;</button>
+  <div>
+    <div id="topbar-title">N&uacute;meros y Operaciones</div>
+    <div id="topbar-sub">Matem&aacute;ticas 3.&ordm; ESO &mdash; Comunidad de Madrid</div>
   </div>
+</div>
 
-  <!-- TOC -->
-  <nav class="toc" aria-label="Índice de contenidos">
-    <div class="toc-title">Índice de contenidos</div>
-    <div class="toc-grid">
-      <a class="toc-item" href="#s1"><span class="toc-num">1</span>Espacio muestral</a>
-      <a class="toc-item" href="#s2"><span class="toc-num">2</span>Sucesos y tipos de sucesos</a>
-      <a class="toc-item" href="#s3"><span class="toc-num">3</span>Operaciones con sucesos</a>
-      <a class="toc-item" href="#s4"><span class="toc-num">4</span>Probabilidad — Regla de Laplace</a>
-      <a class="toc-item" href="#s5"><span class="toc-num">5</span>Probabilidad de sucesos compuestos</a>
-      <a class="toc-item" href="#s6"><span class="toc-num">6</span>Probabilidad experimental</a>
-    </div>
-  </nav>
+<div class="tab-content active" id="tab-numeros">
+<div class="page-header">
+  <div class="ph-tag c-blue">Bloque 1</div>
+  <h2>N&uacute;meros y Operaciones</h2>
+  <p>N&uacute;meros reales, potencias, ra&iacute;ces, notaci&oacute;n cient&iacute;fica, proporcionalidad y porcentajes.</p>
+</div>
 
-  <!-- ===== SECCIÓN 1 ===== -->
-  <section class="section" id="s1">
-    <div class="section-header">
-      <div class="sec-num">1</div>
-      <div class="sec-title">Espacio muestral</div>
-    </div>
+<div class="sh c-blue">Conjuntos num&eacute;ricos</div>
+<div class="grid-4">
+  <div class="card" style="border-top:3px solid var(--blue)"><div class="card-title c-blue">&#8469; Naturales</div><div class="card-body">{0,1,2,3,&hellip;}<br>Contar objetos</div></div>
+  <div class="card" style="border-top:3px solid var(--teal)"><div class="card-title c-teal">&#8484; Enteros</div><div class="card-body">{&hellip;,&minus;2,&minus;1,0,1,2,&hellip;}<br>Temperaturas, deudas</div></div>
+  <div class="card" style="border-top:3px solid var(--violet)"><div class="card-title c-violet">&#8474; Racionales</div><div class="card-body">Fracciones p/q (q&ne;0)<br>Decimal exacto o peri&oacute;dico</div></div>
+  <div class="card" style="border-top:3px solid var(--rose)"><div class="card-title c-rose">&#8477; Reales</div><div class="card-body">&#8474; &cup; irracionales<br>&radic;2, &pi;, e &isin; &#8477;</div></div>
+</div>
+<div class="def-box border-blue bg-blue">
+  <div class="db-label c-blue">N&uacute;meros irracionales</div>
+  <div class="db-text">No pueden expresarse como fracci&oacute;n p/q. Su decimal es <b>infinito y no peri&oacute;dico</b>.<br>
+  Ejemplos: &radic;2 &asymp; 1,41421&hellip; &nbsp; &radic;3 &asymp; 1,73205&hellip; &nbsp; &pi; &asymp; 3,14159&hellip; &nbsp; e &asymp; 2,71828&hellip;<br>
+  Propiedad: &radic;n es irracional si n no es cuadrado perfecto.</div>
+</div>
 
-    <h3 class="sub">Experimento aleatorio</h3>
-    <div class="def-box">
-      <div class="box-label">Definición</div>
-      <div class="box-text">Un <strong>experimento aleatorio</strong> es aquel cuyo resultado no se puede predecir con certeza antes de realizarlo, aunque sí se conocen todos sus posibles resultados.<br>Ejemplos: lanzar un dado, extraer una carta, lanzar una moneda.</div>
-    </div>
-    <p>Se opone al experimento <em>determinista</em>, en el que el resultado es siempre el mismo (por ejemplo, calcular el área de un triángulo).</p>
-
-    <h3 class="sub">Espacio muestral</h3>
-    <div class="def-box">
-      <div class="box-label">Definición</div>
-      <div class="box-text">El <strong>espacio muestral</strong> (notación: <strong>E</strong> u <strong>Ω</strong>) es el conjunto de <em>todos</em> los posibles resultados de un experimento aleatorio. Cada resultado individual se denomina <strong>suceso elemental</strong>.</div>
-    </div>
-
-    <p>Ejemplos de espacios muestrales:</p>
-    <div class="cards-grid">
-      <div class="card"><div class="card-name">Moneda</div><div class="card-def">E = {cara, cruz}</div><div class="card-ex">2 sucesos elementales</div></div>
-      <div class="card"><div class="card-name">Dado de 6 caras</div><div class="card-def">E = {1, 2, 3, 4, 5, 6}</div><div class="card-ex">6 sucesos elementales</div></div>
-      <div class="card"><div class="card-name">Baraja española (palo)</div><div class="card-def">E = {oros, copas, espadas, bastos}</div><div class="card-ex">4 sucesos elementales</div></div>
-      <div class="card"><div class="card-name">Dos monedas</div><div class="card-def">E = {(C,C),(C,X),(X,C),(X,X)}</div><div class="card-ex">4 sucesos elementales</div></div>
-    </div>
-
-    <div class="warn-box">
-      <div class="box-label">Nota importante</div>
-      <div class="box-text">Al describir el espacio muestral hay que incluir <em>todos</em> los resultados posibles sin repetir ninguno. Omitir alguno llevaría a probabilidades incorrectas.</div>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN 2 ===== -->
-  <section class="section" id="s2">
-    <div class="section-header">
-      <div class="sec-num">2</div>
-      <div class="sec-title">Sucesos y tipos de sucesos</div>
-    </div>
-
-    <div class="def-box">
-      <div class="box-label">Definición general</div>
-      <div class="box-text">Un <strong>suceso</strong> es cualquier subconjunto del espacio muestral; es decir, cualquier colección de posibles resultados del experimento. Se denota con letras mayúsculas: A, B, C…</div>
-    </div>
-
-    <h3 class="sub">Tipos de sucesos</h3>
-    <div class="cards-grid">
-      <div class="card"><div class="card-name">Suceso elemental</div><div class="card-def">Formado por un único resultado del espacio muestral.</div><div class="card-ex">Dado: A = {3}</div></div>
-      <div class="card"><div class="card-name">Suceso compuesto</div><div class="card-def">Formado por dos o más sucesos elementales.</div><div class="card-ex">Dado: A = {2, 4, 6} (pares)</div></div>
-      <div class="card"><div class="card-name">Suceso seguro</div><div class="card-def">Ocurre siempre. Coincide con el espacio muestral completo E.</div><div class="card-ex">Dado: A = {1,2,3,4,5,6}</div></div>
-      <div class="card"><div class="card-name">Suceso imposible</div><div class="card-def">No puede ocurrir nunca. Es el conjunto vacío (∅).</div><div class="card-ex">Dado: A = {} (sacar un 7)</div></div>
-      <div class="card"><div class="card-name">Sucesos compatibles</div><div class="card-def">Pueden ocurrir a la vez; tienen algún resultado en común.</div><div class="card-ex">A={2,4,6} y B={4,5,6}: comparten 4 y 6</div></div>
-      <div class="card"><div class="card-name">Sucesos incompatibles</div><div class="card-def">No pueden ocurrir simultáneamente; no comparten ningún resultado.</div><div class="card-ex">A={1,3,5} y B={2,4,6}</div></div>
-      <div class="card"><div class="card-name">Sucesos contrarios</div><div class="card-def">Incompatibles y juntos agotan todo el espacio muestral. El contrario de A se denota Ā.</div><div class="card-ex">A={1,2,3}, Ā={4,5,6}</div></div>
-    </div>
-
-    <div class="warn-box">
-      <div class="box-label">Distinción clave</div>
-      <div class="box-text">Dos sucesos pueden ser <strong>incompatibles sin ser contrarios</strong> (p. ej., A={1} y B={2} son incompatibles, pero no contrarios porque no cubren todo E). Los contrarios siempre son incompatibles, pero no al revés.</div>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN 3 ===== -->
-  <section class="section" id="s3">
-    <div class="section-header">
-      <div class="sec-num">3</div>
-      <div class="sec-title">Operaciones con sucesos</div>
-    </div>
-
-    <p>Experimento: lanzar un dado. E = {1,2,3,4,5,6}. Usamos <strong>A = {2,4,6}</strong> (pares) y <strong>B = {1,2,3}</strong> (menores que 4).</p>
-
-    <div class="ops-grid">
-      <div class="op-card"><div class="op-name">Unión (A ∪ B)</div><div class="op-notation">A ∪ B</div><div class="op-desc">Ocurre A, o B, o ambos. Todos los elementos de A y de B.</div><div class="op-ex">A ∪ B = {1, 2, 3, 4, 6}</div></div>
-      <div class="op-card"><div class="op-name">Intersección (A ∩ B)</div><div class="op-notation">A ∩ B</div><div class="op-desc">Ocurren A y B a la vez. Solo los elementos comunes.</div><div class="op-ex">A ∩ B = {2}</div></div>
-      <div class="op-card"><div class="op-name">Diferencia (A \ B)</div><div class="op-notation">A \ B</div><div class="op-desc">Ocurre A pero NO ocurre B. Elementos de A que no están en B.</div><div class="op-ex">A \ B = {4, 6}</div></div>
-      <div class="op-card"><div class="op-name">Contrario (Ā)</div><div class="op-notation">Ā = E \ A</div><div class="op-desc">Todo lo que NO es A. Complemento de A en E.</div><div class="op-ex">Ā = {1, 3, 5}</div></div>
-    </div>
-
-    <div class="warn-box">
-      <div class="box-label">Propiedad fundamental del suceso contrario</div>
-      <div class="box-text">Siempre se cumple: <strong>A ∪ Ā = E</strong> (suceso seguro) y <strong>A ∩ Ā = ∅</strong> (suceso imposible). A y Ā son incompatibles y agotan el espacio muestral.</div>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN 4 ===== -->
-  <section class="section" id="s4">
-    <div class="section-header">
-      <div class="sec-num">4</div>
-      <div class="sec-title">Probabilidad de sucesos — Regla de Laplace</div>
-    </div>
-
-    <h3 class="sub">¿Qué es la probabilidad?</h3>
-    <div class="def-box">
-      <div class="box-label">Definición</div>
-      <div class="box-text">La <strong>probabilidad</strong> de un suceso A, P(A), es un número real que mide la mayor o menor posibilidad de que A ocurra. Siempre cumple: <strong>0 ≤ P(A) ≤ 1</strong>.<br>P(A) = 0 → suceso imposible. &nbsp;&nbsp; P(A) = 1 → suceso seguro.</div>
-    </div>
-
-    <h3 class="sub">Condiciones para aplicar la regla de Laplace</h3>
-    <p>1. El número de resultados posibles es <strong>finito</strong>.</p>
-    <p>2. Todos los resultados elementales son <strong>equiprobables</strong> (tienen la misma probabilidad de ocurrir).</p>
-    <p style="font-size:13.5px; color:var(--gray-text)">Ejemplos válidos: dados equilibrados, monedas, barajas bien mezcladas, bolas idénticas en una urna.</p>
-
-    <div class="formula-box">
-      <div class="box-label">Regla de Laplace</div>
-      <div class="formula-main">P(A) = casos favorables a A / casos posibles</div>
-      <div class="formula-note">Los «casos posibles» son el número de sucesos elementales del espacio muestral.</div>
-    </div>
-
-    <h3 class="sub">Propiedades básicas de la probabilidad</h3>
-    <p>· 0 ≤ P(A) ≤ 1 para cualquier suceso A.</p>
-    <p>· P(E) = 1 (el suceso seguro tiene probabilidad 1).</p>
-    <p>· P(∅) = 0 (el suceso imposible tiene probabilidad 0).</p>
-    <p>· P(Ā) = 1 − P(A) (probabilidad del suceso contrario).</p>
-
-    <h3 class="sub">Ejemplos resueltos</h3>
-
-    <div class="solved">
-      <div class="box-label">Ejemplo resuelto 1</div>
-      <div class="solved-q">Se lanza un dado de 6 caras equilibrado. ¿Cuál es la probabilidad de obtener un número par?</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t">Espacio muestral: E = {1, 2, 3, 4, 5, 6} → 6 casos posibles.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Suceso A = «número par» = {2, 4, 6} → 3 casos favorables.</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-t">Aplicamos Laplace: P(A) = 3/6 = 1/2.</div></div>
-      <div><span class="step-result">P(par) = 1/2 = 0,5 = 50 %</span></div>
-    </div>
-
-    <div class="solved">
-      <div class="box-label">Ejemplo resuelto 2</div>
-      <div class="solved-q">Se extrae una carta al azar de una baraja española de 40 cartas. ¿Cuál es la probabilidad de obtener un as?</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t">Espacio muestral: 40 cartas → 40 casos posibles.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Suceso A = «sacar un as»: hay 4 ases (uno por palo) → 4 casos favorables.</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-t">P(A) = 4/40 = 1/10.</div></div>
-      <div><span class="step-result">P(as) = 1/10 = 0,1 = 10 %</span></div>
-    </div>
-
-    <div class="solved">
-      <div class="box-label">Ejemplo resuelto 3</div>
-      <div class="solved-q">Una bolsa tiene 3 bolas rojas, 2 azules y 5 verdes. Se extrae una al azar. ¿Cuál es la probabilidad de que sea azul? ¿Y de que NO sea verde?</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t">Total: 3 + 2 + 5 = 10 bolas → 10 casos posibles.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">P(azul) = 2/10 = 1/5.</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-t">P(verde) = 5/10 = 1/2. Por tanto, P(no verde) = 1 − 1/2 = 1/2.</div></div>
-      <div><span class="step-result">P(azul) = 1/5 &nbsp;·&nbsp; P(no verde) = 1/2</span></div>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN 5 ===== -->
-  <section class="section" id="s5">
-    <div class="section-header">
-      <div class="sec-num">5</div>
-      <div class="sec-title">Probabilidad de sucesos compuestos</div>
-    </div>
-
-    <h3 class="sub">Probabilidad de la unión: P(A ∪ B)</h3>
-    <div class="formula-box">
-      <div class="box-label">Fórmula general — unión</div>
-      <div class="formula-main">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</div>
-      <div class="formula-note">Se resta P(A ∩ B) para no contar dos veces los resultados comunes.</div>
-    </div>
-
-    <p>Si A y B son <strong>incompatibles</strong>, P(A ∩ B) = 0 y la fórmula se simplifica:</p>
-    <div class="formula-box">
-      <div class="box-label">Caso especial — sucesos incompatibles</div>
-      <div class="formula-main">P(A ∪ B) = P(A) + P(B)</div>
-      <div class="formula-note">Solo válido cuando A y B no pueden ocurrir a la vez.</div>
-    </div>
-
-    <h3 class="sub">Probabilidad de la intersección: P(A ∩ B)</h3>
-    <p>Hay que distinguir si los sucesos son <strong>independientes</strong> o <strong>dependientes</strong>:</p>
-
-    <div class="cond-grid">
-      <div class="cond-indep">
-        <div class="cond-title">Sucesos independientes</div>
-        <div class="cond-body">El resultado de uno <strong>no afecta</strong> al del otro.</div>
-        <div class="cond-formula">P(A ∩ B) = P(A) · P(B)</div>
-      </div>
-      <div class="cond-dep">
-        <div class="cond-title">Sucesos dependientes</div>
-        <div class="cond-body">El resultado de uno <strong>sí influye</strong> en el del otro.</div>
-        <div class="cond-formula">No se aplica P(A)·P(B)</div>
-      </div>
-    </div>
-
-    <div class="warn-box">
-      <div class="box-label">Importante</div>
-      <div class="box-text">La fórmula P(A ∩ B) = P(A)·P(B) <em>solo es válida para sucesos independientes</em>. En 3.º ESO, los problemas de sucesos dependientes se resuelven con Laplace sobre el espacio muestral combinado o multiplicando las probabilidades condicionadas de forma intuitiva.</div>
-    </div>
-
-    <h3 class="sub">¿Cuándo son independientes dos sucesos?</h3>
-    <p>· Lanzar dos dados (o dos monedas): cada lanzamiento no afecta al otro.</p>
-    <p>· Extraer una carta, <strong>devolverla</strong> al mazo y extraer otra: los intentos son independientes.</p>
-    <p>· Sin devolución: los sucesos son <strong>dependientes</strong> (el espacio muestral cambia).</p>
-
-    <h3 class="sub">Ejemplos resueltos</h3>
-
-    <div class="solved">
-      <div class="box-label">Ejemplo resuelto — Unión (sucesos compatibles)</div>
-      <div class="solved-q">Dado de 6 caras. A = número par = {2,4,6}. B = número mayor que 4 = {5,6}. Calcular P(A ∪ B).</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t">P(A) = 3/6 = 1/2.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">P(B) = 2/6 = 1/3.</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-t">A ∩ B = {6} → P(A ∩ B) = 1/6. (Compatibles: el 6 es par y mayor que 4.)</div></div>
-      <div class="step"><div class="step-n">4</div><div class="step-t">P(A ∪ B) = 1/2 + 1/3 − 1/6 = 3/6 + 2/6 − 1/6 = 4/6 = 2/3.</div></div>
-      <div><span class="step-result">P(A ∪ B) = 2/3 ≈ 0,667</span></div>
-    </div>
-
-    <div class="solved">
-      <div class="box-label">Ejemplo resuelto — Intersección (sucesos independientes)</div>
-      <div class="solved-q">Se lanza una moneda y un dado equilibrados. ¿Cuál es la probabilidad de obtener cara y número par?</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t">A = «cara» → P(A) = 1/2.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">B = «número par» → P(B) = 3/6 = 1/2.</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-t">Los sucesos son independientes (un lanzamiento no afecta al otro).</div></div>
-      <div class="step"><div class="step-n">4</div><div class="step-t">P(A ∩ B) = P(A) · P(B) = 1/2 · 1/2 = 1/4.</div></div>
-      <div><span class="step-result">P(cara y par) = 1/4 = 0,25 = 25 %</span></div>
-    </div>
-
-    <div class="solved">
-      <div class="box-label">Ejemplo resuelto — Sucesos dependientes (sin reposición)</div>
-      <div class="solved-q">Una urna tiene 3 bolas rojas y 2 azules. Se extraen dos bolas SIN reposición. ¿Cuál es la probabilidad de que las dos sean rojas?</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t">1.ª extracción: P(1.ª roja) = 3/5.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Si la 1.ª es roja, quedan 2 rojas y 2 azules: P(2.ª roja | 1.ª roja) = 2/4 = 1/2.</div></div>
-      <div class="step"><div class="step-n">3</div><div class="step-t">Sucesos dependientes: P(ambas rojas) = 3/5 · 2/4 = 6/20 = 3/10.</div></div>
-      <div><span class="step-result">P(dos rojas) = 3/10 = 0,3 = 30 %</span></div>
-    </div>
-  </section>
-
-  <!-- ===== SECCIÓN 6 ===== -->
-  <section class="section" id="s6">
-    <div class="section-header">
-      <div class="sec-num">6</div>
-      <div class="sec-title">Probabilidad experimental</div>
-    </div>
-
-    <h3 class="sub">Diferencia entre probabilidad teórica y experimental</h3>
-    <p>La <strong>probabilidad teórica</strong> se calcula mediante razonamiento (Laplace), sin necesidad de realizar el experimento. Requiere equiprobabilidad.</p>
-    <p>La <strong>probabilidad experimental</strong> se obtiene realizando el experimento muchas veces y observando con qué frecuencia ocurre el suceso.</p>
-
-    <h3 class="sub">Frecuencia absoluta y frecuencia relativa</h3>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-name">Frecuencia absoluta (f<sub>a</sub>)</div>
-        <div class="card-def">Número de veces que ha ocurrido el suceso A en n repeticiones del experimento.</div>
-        <div class="card-ex">Moneda, 100 lanzamientos, 48 caras: f<sub>a</sub> = 48</div>
-      </div>
-      <div class="card">
-        <div class="card-name">Frecuencia relativa (f<sub>r</sub>)</div>
-        <div class="card-def">Cociente entre la frecuencia absoluta y el total n. Siempre entre 0 y 1.</div>
-        <div class="card-ex">f<sub>r</sub> = 48/100 = 0,48</div>
-      </div>
-    </div>
-
-    <div class="formula-box">
-      <div class="box-label">Probabilidad experimental (frecuencia relativa)</div>
-      <div class="formula-main">P<sub>exp</sub>(A) = frecuencia absoluta de A / número total de repeticiones (n)</div>
-      <div class="formula-note">La probabilidad experimental mejora como estimación cuanto mayor sea el número de repeticiones.</div>
-    </div>
-
-    <h3 class="sub">Ley de los grandes números</h3>
-    <div class="def-box">
-      <div class="box-label">Principio fundamental</div>
-      <div class="box-text">Al aumentar el número de repeticiones del experimento, la frecuencia relativa se aproxima progresivamente a la probabilidad teórica. Este hecho se conoce como la <strong>ley de los grandes números</strong>.</div>
-    </div>
-
-    <h3 class="sub">Ejemplos cotidianos</h3>
-
-    <div class="solved">
-      <div class="box-label">Ejemplo 1 — Moneda</div>
-      <div class="solved-q">Se lanza una moneda 200 veces y se obtienen 94 caras.</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t">f<sub>a</sub>(cara) = 94. &nbsp; f<sub>r</sub>(cara) = 94/200 = 0,47.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Probabilidad teórica = 1/2 = 0,5. La experimental (0,47) se aproxima bastante con 200 lanzamientos.</div></div>
-      <div><span class="step-result">Con más lanzamientos, la diferencia se reduciría aún más.</span></div>
-    </div>
-
-    <div class="solved">
-      <div class="box-label">Ejemplo 2 — Dado en clase</div>
-      <div class="solved-q">Un alumno lanza un dado 60 veces y obtiene el resultado 5 exactamente 12 veces.</div>
-      <div class="step"><div class="step-n">1</div><div class="step-t">P<sub>exp</sub>(5) = 12/60 = 1/5 = 0,2.</div></div>
-      <div class="step"><div class="step-n">2</div><div class="step-t">Probabilidad teórica = 1/6 ≈ 0,167. La diferencia es normal con 60 lanzamientos.</div></div>
-      <div><span class="step-result">Con más repeticiones, la frecuencia relativa se acercaría a 1/6.</span></div>
-    </div>
-
-    <div class="warn-box">
-      <div class="box-label">Distinción clave para el examen</div>
-      <div class="box-text">La probabilidad experimental no coincide exactamente con la teórica en un experimento concreto, pero <strong>tiende a ella al aumentar n</strong>. No son lo mismo, aunque se aproximen.</div>
-    </div>
-  </section>
-
-  <!-- RESUMEN FINAL -->
-  <div class="summary-bar">
-    <h3>Resumen de fórmulas esenciales — Probabilidad 3.º ESO</h3>
-    <div class="sum-grid">
-      <div class="sum-pill"><strong>Laplace</strong><span>P(A) = favorables / posibles</span></div>
-      <div class="sum-pill"><strong>Contrario</strong><span>P(Ā) = 1 − P(A)</span></div>
-      <div class="sum-pill"><strong>Unión general</strong><span>P(A∪B) = P(A)+P(B)−P(A∩B)</span></div>
-      <div class="sum-pill"><strong>Unión incompatibles</strong><span>P(A∪B) = P(A)+P(B)</span></div>
-      <div class="sum-pill"><strong>Intersección independ.</strong><span>P(A∩B) = P(A)·P(B)</span></div>
-      <div class="sum-pill"><strong>P. experimental</strong><span>P_exp = f_abs / n</span></div>
+<div class="sh c-blue">Potencias y sus propiedades</div>
+<div class="grid-2">
+  <div class="formula border-blue">
+    <div class="f-label c-blue">Operaciones con potencias (misma base)</div>
+    <div class="f-main" style="text-align:left;line-height:1.9;font-size:.9rem">
+      a<sup>n</sup> &middot; a<sup>m</sup> = a<sup>n+m</sup><br>
+      a<sup>n</sup> / a<sup>m</sup> = a<sup>n&minus;m</sup><br>
+      (a<sup>n</sup>)<sup>m</sup> = a<sup>n&middot;m</sup><br>
+      a<sup>0</sup> = 1 &nbsp;(a &ne; 0)<br>
+      a<sup>&minus;n</sup> = 1/a<sup>n</sup>
     </div>
   </div>
+  <div class="formula border-violet">
+    <div class="f-label c-violet">Potencias de productos y cocientes</div>
+    <div class="f-main" style="text-align:left;line-height:1.9;font-size:.9rem">
+      (a&middot;b)<sup>n</sup> = a<sup>n</sup>&middot;b<sup>n</sup><br>
+      (a/b)<sup>n</sup> = a<sup>n</sup>/b<sup>n</sup><br>
+      a<sup>1/n</sup> = <sup>n</sup>&radic;a<br>
+      a<sup>m/n</sup> = <sup>n</sup>&radic;(a<sup>m</sup>)<br>
+      (&radic;a)<sup>2</sup> = a &nbsp;(a&ge;0)
+    </div>
+  </div>
+</div>
 
-</div><!-- /page-wrap -->
+<div class="sh c-blue">Ra&iacute;ces y radicales</div>
+<div class="grid-3">
+  <div class="card" style="border-left:3px solid var(--blue)">
+    <div class="card-title c-blue">Propiedades de ra&iacute;ces</div>
+    <div class="card-body">&radic;(a&middot;b) = &radic;a &middot; &radic;b<br>&radic;(a/b) = &radic;a / &radic;b<br><sup>n</sup>&radic;(<sup>m</sup>&radic;a) = <sup>n&middot;m</sup>&radic;a</div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--violet)">
+    <div class="card-title c-violet">Simplificaci&oacute;n de radicales</div>
+    <div class="card-body">Extrae factores que sean cuadrados perfectos.<br><span class="card-ex">&radic;12 = &radic;(4&middot;3) = 2&radic;3</span></div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--teal)">
+    <div class="card-title c-teal">Racionalizaci&oacute;n</div>
+    <div class="card-body">Elimina ra&iacute;ces del denominador.<br><span class="card-ex">6/&radic;3 = 6&radic;3/3 = 2&radic;3</span><br><span class="card-ex">1/(a+&radic;b) &rarr; mult. por (a&minus;&radic;b)</span></div>
+  </div>
+</div>
 
-<footer>
-  Matemáticas · 3.º ESO · Comunidad de Madrid — Probabilidad · Resumen didáctico
-</footer>
+<div class="sh c-blue">Notaci&oacute;n cient&iacute;fica</div>
+<div class="formula border-teal">
+  <div class="f-label c-teal">Forma est&aacute;ndar</div>
+  <div class="f-main">a &times; 10<sup>n</sup> &nbsp;&nbsp; con &nbsp;&nbsp; 1 &le; a &lt; 10 &nbsp;&nbsp; y &nbsp;&nbsp; n &isin; &#8484;</div>
+  <div class="f-note">3 700 000 = 3,7 &times; 10<sup>6</sup> &nbsp;|&nbsp; 0,000045 = 4,5 &times; 10<sup>&minus;5</sup><br>
+  Multiplicar: (a&times;10<sup>n</sup>)&middot;(b&times;10<sup>m</sup>) = (a&middot;b)&times;10<sup>n+m</sup></div>
+</div>
 
-</body>
-</html>
+<div class="sh c-blue">Proporcionalidad</div>
+<div class="grid-2">
+  <div class="def-box border-teal bg-teal">
+    <div class="db-label c-teal">Raz&oacute;n y proporci&oacute;n</div>
+    <div class="db-text">Raz&oacute;n: cociente a/b.<br>Proporci&oacute;n: a/b = c/d &harr; a&middot;d = b&middot;c (propiedad fundamental).<br><b>Magnitudes proporcionales directas:</b> y = k&middot;x &rarr; al doble de x, doble de y.<br><b>Magnitudes proporcionales inversas:</b> y = k/x &rarr; al doble de x, mitad de y.</div>
+  </div>
+  <div class="def-box border-violet bg-violet">
+    <div class="db-label c-violet">Porcentajes</div>
+    <div class="db-text">Cantidad = Base &times; (r/100)<br><b>Aumento del r%:</b> nueva = base &times; (1 + r/100)<br><b>Descuento del r%:</b> nueva = base &times; (1 &minus; r/100)<br><b>Porcentajes sucesivos:</b> &plusmn;r% y &plusmn;s% &ne; &plusmn;(r+s)%<br>Aplica factor total: (1&plusmn;r/100)&middot;(1&plusmn;s/100)</div>
+  </div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-blue">Ejemplo resuelto 1 &mdash; Potencias</div>
+  <div class="s-q">Simplifica y calcula: (2<sup>3</sup> &middot; 4<sup>2</sup>) / (8<sup>2</sup>)</div>
+  <div class="step"><div class="step-n" style="background:var(--blue)">1</div><div class="step-t">Expresa todo en base 2: 4<sup>2</sup>=(2<sup>2</sup>)<sup>2</sup>=2<sup>4</sup> &nbsp; 8<sup>2</sup>=(2<sup>3</sup>)<sup>2</sup>=2<sup>6</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--blue)">2</div><div class="step-t">Numerador: 2<sup>3</sup>&middot;2<sup>4</sup> = 2<sup>7</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--blue)">3</div><div class="step-t">Divisi&oacute;n: 2<sup>7</sup>/2<sup>6</sup> = 2<sup>1</sup> = 2</div></div>
+  <span class="step-r bg-blue c-blue">Resultado: 2</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-blue">Ejemplo resuelto 2 &mdash; Porcentajes sucesivos</div>
+  <div class="s-q">Un art&iacute;culo sube un 20% y luego baja un 20%. &iquest;Es el precio final igual al inicial?</div>
+  <div class="step"><div class="step-n" style="background:var(--blue)">1</div><div class="step-t">Factor total: 1,20 &times; 0,80 = 0,96</div></div>
+  <div class="step"><div class="step-n" style="background:var(--blue)">2</div><div class="step-t">El precio final es el 96% del inicial: ha bajado un 4%</div></div>
+  <span class="step-r bg-blue c-blue">No: el precio baja un 4% en total</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-blue">Ejemplo resuelto 3 &mdash; Notaci&oacute;n cient&iacute;fica</div>
+  <div class="s-q">Calcula (3,2 &times; 10<sup>5</sup>) &divide; (8 &times; 10<sup>2</sup>)</div>
+  <div class="step"><div class="step-n" style="background:var(--blue)">1</div><div class="step-t">Divide las mantisas: 3,2 / 8 = 0,4</div></div>
+  <div class="step"><div class="step-n" style="background:var(--blue)">2</div><div class="step-t">Divide las potencias: 10<sup>5</sup>/10<sup>2</sup> = 10<sup>3</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--blue)">3</div><div class="step-t">0,4 &times; 10<sup>3</sup> = 4 &times; 10<sup>2</sup> (ajustar para que 1 &le; mantisa &lt; 10)</div></div>
+  <span class="step-r bg-blue c-blue">4 &times; 10<sup>2</sup></span>
+</div>
+
+<div class="tip-box border-amber bg-amber">
+  <div class="tb-label c-amber">&#9888; Errores t&iacute;picos</div>
+  <div class="tb-text">
+  &bull; 2<sup>3</sup>&middot;2<sup>4</sup> = 2<sup>7</sup> (se suman exponentes, NO se multiplican).<br>
+  &bull; &radic;(a+b) &ne; &radic;a + &radic;b &nbsp; (error muy frecuente).<br>
+  &bull; Porcentajes sucesivos: +20% y &minus;20% NO se anulan (ver ejemplo).<br>
+  &bull; En notaci&oacute;n cient&iacute;fica la mantisa debe estar en [1,10).
+  </div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-algebra">
+<div class="page-header">
+  <div class="ph-tag c-violet">Bloque 2 &mdash; &Eacute;nfasis</div>
+  <h2>&Aacute;lgebra</h2>
+  <p>Polinomios, productos notables, factorizaci&oacute;n, Ruffini, ecuaciones (1.&ordm;, 2.&ordm;, bicuadradas, 3.&ordm; y 4.&ordm; grado) y sistemas.</p>
+</div>
+
+<div class="sh c-violet">Polinomios: operaciones</div>
+<div class="def-box border-violet bg-violet">
+  <div class="db-label c-violet">Definici&oacute;n</div>
+  <div class="db-text">P(x) = a<sub>n</sub>x<sup>n</sup> + a<sub>n&minus;1</sub>x<sup>n&minus;1</sup> + &hellip; + a<sub>1</sub>x + a<sub>0</sub><br>
+  <b>Grado:</b> mayor exponente con coeficiente &ne; 0. &nbsp;<b>T&eacute;rmino independiente:</b> a<sub>0</sub>.<br>
+  <b>Valor num&eacute;rico</b> P(a): sustituir x por a y calcular.</div>
+</div>
+<div class="grid-3">
+  <div class="card" style="border-top:3px solid var(--violet)"><div class="card-title c-violet">Suma/Resta</div><div class="card-body">Agrupa t&eacute;rminos semejantes (mismo grado).</div><div class="card-ex">(x<sup>2</sup>+2x)+(3x&minus;1) = x<sup>2</sup>+5x&minus;1</div></div>
+  <div class="card" style="border-top:3px solid var(--blue)"><div class="card-title c-blue">Multiplicaci&oacute;n</div><div class="card-body">Distributiva t&eacute;rmino a t&eacute;rmino.</div><div class="card-ex">(x+2)(x&minus;3) = x<sup>2</sup>&minus;x&minus;6</div></div>
+  <div class="card" style="border-top:3px solid var(--teal)"><div class="card-title c-teal">Divisi&oacute;n</div><div class="card-body">P(x) = D(x)&middot;C(x) + R<br>Usa divisi&oacute;n larga o Ruffini (si D es x&minus;a).</div></div>
+</div>
+
+<div class="sh c-violet">Productos notables</div>
+<div class="grid-3">
+  <div class="formula border-violet"><div class="f-label c-violet">Cuadrado de suma</div><div class="f-main">(a+b)<sup>2</sup> = a<sup>2</sup>+2ab+b<sup>2</sup></div></div>
+  <div class="formula border-blue"><div class="f-label c-blue">Cuadrado de diferencia</div><div class="f-main">(a&minus;b)<sup>2</sup> = a<sup>2</sup>&minus;2ab+b<sup>2</sup></div></div>
+  <div class="formula border-teal"><div class="f-label c-teal">Suma por diferencia</div><div class="f-main">(a+b)(a&minus;b) = a<sup>2</sup>&minus;b<sup>2</sup></div></div>
+</div>
+
+<div class="sh c-violet">Factorizaci&oacute;n de polinomios</div>
+<div class="grid-2">
+  <div class="card" style="border-left:3px solid var(--violet)"><div class="card-title c-violet">Factor com&uacute;n</div><div class="card-body">Extrae el MCD de todos los t&eacute;rminos.</div><div class="card-ex">6x<sup>2</sup>+9x = 3x(2x+3)</div></div>
+  <div class="card" style="border-left:3px solid var(--blue)"><div class="card-title c-blue">Identidades notables</div><div class="card-body">Reconoce cuadrados perfectos y diferencia de cuadrados.</div><div class="card-ex">x<sup>2</sup>&minus;9 = (x+3)(x&minus;3)<br>x<sup>2</sup>+6x+9 = (x+3)<sup>2</sup></div></div>
+  <div class="card" style="border-left:3px solid var(--teal)"><div class="card-title c-teal">Trinomio x<sup>2</sup>+bx+c</div><div class="card-body">Busca dos n&uacute;meros cuya suma sea b y producto c.</div><div class="card-ex">x<sup>2</sup>+5x+6 = (x+2)(x+3)</div></div>
+  <div class="card" style="border-left:3px solid var(--rose)"><div class="card-title c-rose">Algoritmo de Ruffini</div><div class="card-body">Si P(a)=0, entonces (x&minus;a) es factor. Aplica Ruffini para dividir y reducir el grado.</div></div>
+</div>
+
+<div class="sh c-violet">Algoritmo de Ruffini &mdash; paso a paso</div>
+<div class="def-box border-violet bg-violet">
+  <div class="db-label c-violet">C&oacute;mo usar Ruffini</div>
+  <div class="db-text">
+  <b>Objeto:</b> dividir P(x) entre (x&minus;a).<br>
+  1. Escribe los coeficientes de P(x) ordenados por grado (pon 0 si falta alguno).<br>
+  2. Escribe a a la izquierda.<br>
+  3. Baja el primer coeficiente. Mult&iacute;plica por a, s&uacute;male al siguiente coeficiente, y as&iacute; sucesivamente.<br>
+  4. El &uacute;ltimo n&uacute;mero es el resto; los dem&aacute;s son los coeficientes del cociente (grado = grado P &minus; 1).<br>
+  <b>Teorema del factor:</b> si P(a)=0 (resto=0), entonces (x&minus;a) divide exactamente a P(x).
+  </div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-violet">Ejemplo: factoriza P(x) = x<sup>3</sup>&minus;6x<sup>2</sup>+11x&minus;6 con Ruffini</div>
+  <div class="s-q">Factoriza completamente: x<sup>3</sup> &minus; 6x<sup>2</sup> + 11x &minus; 6</div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">1</div><div class="step-t">Candidatos a ra&iacute;z racional: divisores de 6: &plusmn;1, &plusmn;2, &plusmn;3, &plusmn;6</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">2</div><div class="step-t">P(1) = 1&minus;6+11&minus;6 = 0 &rarr; (x&minus;1) es factor</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">3</div><div class="step-t">Ruffini con a=1: coefs 1|&minus;6|11|&minus;6<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;1|&minus;5|6<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1|&minus;5|6|0 &rarr; cociente: x<sup>2</sup>&minus;5x+6</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">4</div><div class="step-t">Factoriza x<sup>2</sup>&minus;5x+6: busca suma=&minus;5 y producto=6 &rarr; &minus;2 y &minus;3 &rarr; (x&minus;2)(x&minus;3)</div></div>
+  <span class="step-r bg-violet c-violet">x<sup>3</sup>&minus;6x<sup>2</sup>+11x&minus;6 = (x&minus;1)(x&minus;2)(x&minus;3)</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-violet">Ejemplo: ecuaci&oacute;n de 4.&ordm; grado con Ruffini</div>
+  <div class="s-q">Resuelve: x<sup>4</sup> &minus; 5x<sup>2</sup> + 4 = 0</div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">1</div><div class="step-t">Es bicuadrada. Cambio t = x<sup>2</sup>: t<sup>2</sup>&minus;5t+4 = 0</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">2</div><div class="step-t">Resolvemos: t = (5&plusmn;&radic;(25&minus;16))/2 = (5&plusmn;3)/2 &rarr; t<sub>1</sub>=4, t<sub>2</sub>=1</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">3</div><div class="step-t">x<sup>2</sup>=4 &rarr; x=&plusmn;2 &nbsp;|&nbsp; x<sup>2</sup>=1 &rarr; x=&plusmn;1</div></div>
+  <span class="step-r bg-violet c-violet">x = 2, &minus;2, 1, &minus;1</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-violet">Ejemplo: ecuaci&oacute;n de 3.&ordm; grado</div>
+  <div class="s-q">Resuelve: x<sup>3</sup> + x<sup>2</sup> &minus; 4x &minus; 4 = 0</div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">1</div><div class="step-t">P(&minus;1) = &minus;1+1+4&minus;4 = 0 &rarr; (x+1) es factor</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">2</div><div class="step-t">Ruffini con a=&minus;1: cociente x<sup>2</sup>&minus;4</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">3</div><div class="step-t">x<sup>2</sup>&minus;4=0 &rarr; x=&plusmn;2</div></div>
+  <span class="step-r bg-violet c-violet">x = &minus;1, 2, &minus;2</span>
+</div>
+
+<div class="sh c-violet">Ecuaciones de 2.&ordm; grado</div>
+<div class="formula border-violet">
+  <div class="f-label c-violet">F&oacute;rmula general</div>
+  <div class="f-main">x = (&minus;b &plusmn; &radic;(b<sup>2</sup>&minus;4ac)) / (2a)</div>
+  <div class="f-note">ax<sup>2</sup> + bx + c = 0 con a &ne; 0 &nbsp;|&nbsp; Discriminante &Delta; = b<sup>2</sup>&minus;4ac</div>
+</div>
+<div class="grid-3">
+  <div class="def-box border-green bg-green"><div class="db-label c-green">&Delta; &gt; 0</div><div class="db-text"><b>Dos soluciones reales distintas</b></div></div>
+  <div class="def-box border-amber bg-amber"><div class="db-label c-amber">&Delta; = 0</div><div class="db-text"><b>Una soluci&oacute;n real doble</b><br>x = &minus;b/(2a)</div></div>
+  <div class="def-box border-rose bg-rose"><div class="db-label c-rose">&Delta; &lt; 0</div><div class="db-text"><b>Sin soluci&oacute;n real</b></div></div>
+</div>
+
+<div class="sh c-violet">Ecuaciones bicuadradas</div>
+<div class="def-box border-blue bg-blue">
+  <div class="db-label c-blue">Forma y m&eacute;todo</div>
+  <div class="db-text">
+  <b>Forma:</b> ax<sup>4</sup> + bx<sup>2</sup> + c = 0 &nbsp;(no aparece x<sup>3</sup> ni x).<br>
+  <b>M&eacute;todo:</b> cambio de variable t = x<sup>2</sup> &rarr; ecuaci&oacute;n cuadr&aacute;tica at<sup>2</sup>+bt+c=0.<br>
+  <b>Atenci&oacute;n:</b> t = x<sup>2</sup> &ge; 0, as&iacute; que se descartan soluciones t &lt; 0.<br>
+  Si t &ge; 0: x = &plusmn;&radic;t (dos soluciones por cada t positivo; una si t=0).
+  </div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-violet">Ejemplo: bicuadrada</div>
+  <div class="s-q">Resuelve: 2x<sup>4</sup> &minus; 9x<sup>2</sup> + 4 = 0</div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">1</div><div class="step-t">Cambio t = x<sup>2</sup>: 2t<sup>2</sup>&minus;9t+4 = 0</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">2</div><div class="step-t">&Delta; = 81&minus;32 = 49 &rarr; t = (9&plusmn;7)/4 &rarr; t<sub>1</sub>=4, t<sub>2</sub>=1/2</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">3</div><div class="step-t">t<sub>1</sub>=4: x=&plusmn;2 &nbsp;|&nbsp; t<sub>2</sub>=1/2: x=&plusmn;&radic;(1/2) = &plusmn;&radic;2/2</div></div>
+  <span class="step-r bg-violet c-violet">x = 2, &minus;2, &radic;2/2, &minus;&radic;2/2</span>
+</div>
+
+<div class="sh c-violet">Sistemas de ecuaciones lineales</div>
+<div class="grid-3">
+  <div class="card" style="border-top:3px solid var(--violet)"><div class="card-title c-violet">Sustituci&oacute;n</div><div class="card-body">Despeja una inc&oacute;gnita de una ecuaci&oacute;n y sustituye en la otra.</div></div>
+  <div class="card" style="border-top:3px solid var(--blue)"><div class="card-title c-blue">Igualaci&oacute;n</div><div class="card-body">Despeja la misma inc&oacute;gnita en ambas ecuaciones e iguala los resultados.</div></div>
+  <div class="card" style="border-top:3px solid var(--teal)"><div class="card-title c-teal">Reducci&oacute;n</div><div class="card-body">Opera las ecuaciones (suma o resta, multiplicando si es necesario) para eliminar una inc&oacute;gnita.</div></div>
+</div>
+<div class="grid-3">
+  <div class="def-box border-green bg-green"><div class="db-label c-green">Sistema compatible determinado</div><div class="db-text">Una sola soluci&oacute;n. Las rectas se cortan en un punto.</div></div>
+  <div class="def-box border-amber bg-amber"><div class="db-label c-amber">Sistema compatible indeterminado</div><div class="db-text">Infinitas soluciones. Las rectas son coincidentes.</div></div>
+  <div class="def-box border-rose bg-rose"><div class="db-label c-rose">Sistema incompatible</div><div class="db-text">Sin soluci&oacute;n. Las rectas son paralelas.</div></div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-violet">Ejemplo: sistema con m&eacute;todo de reducci&oacute;n</div>
+  <div class="s-q">Resuelve: { 3x + 2y = 12 &nbsp;|&nbsp; 2x &minus; y = 1 }</div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">1</div><div class="step-t">Multiplica la 2.&ordf; ecuaci&oacute;n &times;2: 4x&minus;2y=2</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">2</div><div class="step-t">Suma: (3x+2y)+(4x&minus;2y)=12+2 &rarr; 7x=14 &rarr; x=2</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">3</div><div class="step-t">Sustituye en 2&middot;2&minus;y=1 &rarr; y=3</div></div>
+  <span class="step-r bg-violet c-violet">x=2 &nbsp; y=3</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-violet">Ejemplo: problema con sistema</div>
+  <div class="s-q">La suma de dos n&uacute;meros es 20 y su diferencia es 4. H&aacute;llalos.</div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">1</div><div class="step-t">Sistema: x+y=20 &nbsp;|&nbsp; x&minus;y=4</div></div>
+  <div class="step"><div class="step-n" style="background:var(--violet)">2</div><div class="step-t">Suma: 2x=24 &rarr; x=12 &rarr; y=8</div></div>
+  <span class="step-r bg-violet c-violet">Los n&uacute;meros son 12 y 8</span>
+</div>
+
+<div class="tip-box border-amber bg-amber">
+  <div class="tb-label c-amber">&#9888; Errores t&iacute;picos</div>
+  <div class="tb-text">
+  &bull; (a+b)<sup>2</sup> &ne; a<sup>2</sup>+b<sup>2</sup>: falta el t&eacute;rmino 2ab.<br>
+  &bull; Antes de Ruffini, siempre verificar P(a)=0.<br>
+  &bull; En bicuadradas, descartar t&lt;0 antes de calcular las x.<br>
+  &bull; Al dividir una ecuaci&oacute;n entera por un n&uacute;mero, dividir TODOS los t&eacute;rminos.
+  </div>
+</div>
+
+<div class="sum-strip bg-violet">
+  <h4 class="c-violet">Resumen &Aacute;lgebra</h4>
+  <div class="sum-grid">
+    <div class="sum-pill"><strong>2.&ordm; grado</strong><span>x=(&minus;b&plusmn;&radic;&Delta;)/2a</span></div>
+    <div class="sum-pill"><strong>Discriminante</strong><span>&Delta;=b<sup>2</sup>&minus;4ac</span></div>
+    <div class="sum-pill"><strong>(a+b)<sup>2</sup></strong><span>a<sup>2</sup>+2ab+b<sup>2</sup></span></div>
+    <div class="sum-pill"><strong>(a&minus;b)<sup>2</sup></strong><span>a<sup>2</sup>&minus;2ab+b<sup>2</sup></span></div>
+    <div class="sum-pill"><strong>(a+b)(a&minus;b)</strong><span>a<sup>2</sup>&minus;b<sup>2</sup></span></div>
+    <div class="sum-pill"><strong>Bicuadrada</strong><span>t=x<sup>2</sup>, resolver en t</span></div>
+  </div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-funciones">
+<div class="page-header">
+  <div class="ph-tag c-teal">Bloque 3 &mdash; &Eacute;nfasis</div>
+  <h2>Funciones</h2>
+  <p>Concepto, dominio, representaci&oacute;n gr&aacute;fica, funci&oacute;n afin, cuadr&aacute;tica, inversa proporcional y an&aacute;lisis.</p>
+</div>
+
+<div class="sh c-teal">Concepto de funci&oacute;n</div>
+<div class="def-box border-teal bg-teal">
+  <div class="db-label c-teal">Definici&oacute;n</div>
+  <div class="db-text">Una <b>funci&oacute;n</b> f: A &rarr; B asigna a cada x del dominio A <b>un &uacute;nico</b> valor f(x). Variable independiente: x. Variable dependiente: y = f(x).<br>
+  Se puede definir por: tabla, f&oacute;rmula algebraica, gr&aacute;fica o a trozos.</div>
+</div>
+<div class="grid-3">
+  <div class="card" style="border-top:3px solid var(--teal)"><div class="card-title c-teal">Dominio</div><div class="card-body">Valores de x donde f est&aacute; definida.<br><span class="card-ex">f(x)=&radic;x &rarr; x&ge;0<br>f(x)=1/x &rarr; x&ne;0</span></div></div>
+  <div class="card" style="border-top:3px solid var(--blue)"><div class="card-title c-blue">Recorrido (imagen)</div><div class="card-body">Conjunto de todos los valores f(x) posibles.</div></div>
+  <div class="card" style="border-top:3px solid var(--violet)"><div class="card-title c-violet">Ceros (ra&iacute;ces)</div><div class="card-body">Valores de x donde f(x)=0. Cortes con el eje X.</div></div>
+</div>
+
+<div class="sh c-teal">Caracter&iacute;sticas globales de una funci&oacute;n</div>
+<div class="grid-2">
+  <div class="card" style="border-left:3px solid var(--teal)">
+    <div class="card-title c-teal">Crecimiento / Decrecimiento</div>
+    <div class="card-body"><b>Creciente</b> en I: si x<sub>1</sub>&lt;x<sub>2</sub> &rarr; f(x<sub>1</sub>)&lt;f(x<sub>2</sub>).<br><b>Decreciente</b> en I: si x<sub>1</sub>&lt;x<sub>2</sub> &rarr; f(x<sub>1</sub>)&gt;f(x<sub>2</sub>).<br><b>Constante:</b> f(x)=k para todo x en I.</div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--blue)">
+    <div class="card-title c-blue">M&aacute;ximos y m&iacute;nimos relativos</div>
+    <div class="card-body"><b>M&aacute;ximo relativo:</b> punto m&aacute;s alto en su entorno.<br><b>M&iacute;nimo relativo:</b> punto m&aacute;s bajo en su entorno.<br>En ese punto la funci&oacute;n pasa de creciente a decreciente (o viceversa).</div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--violet)">
+    <div class="card-title c-violet">Signo de la funci&oacute;n</div>
+    <div class="card-body"><b>f(x)&gt;0:</b> gr&aacute;fica por encima del eje X.<br><b>f(x)&lt;0:</b> gr&aacute;fica por debajo del eje X.<br>Cambia de signo en los ceros de f.</div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--rose)">
+    <div class="card-title c-rose">Continuidad</div>
+    <div class="card-body">Una funci&oacute;n es <b>continua</b> si su gr&aacute;fica no tiene saltos ni agujeros. Si los tiene, es <b>discontinua</b>.</div>
+  </div>
+</div>
+
+<div class="sh c-teal">Funci&oacute;n lineal y af&iacute;n (recta)</div>
+<div class="grid-2">
+  <div class="formula border-teal">
+    <div class="f-label c-teal">Ecuaci&oacute;n de la recta</div>
+    <div class="f-main">y = mx + b</div>
+    <div class="f-note">m = pendiente &nbsp;|&nbsp; b = ordenada en el origen (corte con eje Y)<br>Funci&oacute;n lineal: b=0 &rarr; y=mx (pasa por el origen)</div>
+  </div>
+  <div class="formula border-blue">
+    <div class="f-label c-blue">Pendiente</div>
+    <div class="f-main">m = (y<sub>2</sub>&minus;y<sub>1</sub>) / (x<sub>2</sub>&minus;x<sub>1</sub>)</div>
+    <div class="f-note">m&gt;0 creciente &middot; m&lt;0 decreciente &middot; m=0 constante<br>Rectas paralelas: misma pendiente. Perpendiculares: m<sub>1</sub>&middot;m<sub>2</sub>=&minus;1</div>
+  </div>
+</div>
+<div class="def-box border-blue bg-blue">
+  <div class="db-label c-blue">Ecuaci&oacute;n punto-pendiente</div>
+  <div class="db-text">Si conocemos la pendiente m y un punto (x<sub>0</sub>,y<sub>0</sub>):<br>
+  <b>y &minus; y<sub>0</sub> = m &middot; (x &minus; x<sub>0</sub>)</b></div>
+</div>
+
+<div class="sh c-teal">Funci&oacute;n cuadr&aacute;tica (par&aacute;bola)</div>
+<div class="formula border-violet">
+  <div class="f-label c-violet">Par&aacute;bola</div>
+  <div class="f-main">y = ax<sup>2</sup> + bx + c &nbsp;&nbsp; (a &ne; 0)</div>
+  <div class="f-note">a&gt;0: abre hacia arriba (m&iacute;nimo en el v&eacute;rtice) &nbsp;|&nbsp; a&lt;0: abre hacia abajo (m&aacute;ximo)<br>
+  V&eacute;rtice: x<sub>v</sub> = &minus;b/(2a) &nbsp;|&nbsp; Eje de simetr&iacute;a: x = &minus;b/(2a)</div>
+</div>
+<div class="grid-2">
+  <div class="def-box border-violet bg-violet">
+    <div class="db-label c-violet">Intersecci&oacute;n con ejes</div>
+    <div class="db-text"><b>Eje Y:</b> hacer x=0 &rarr; punto (0,c).<br><b>Eje X:</b> resolver ax<sup>2</sup>+bx+c=0 (f&oacute;rmula cuadr&aacute;tica).<br>El n&uacute;mero de cortes depende del signo de &Delta;.</div>
+  </div>
+  <div class="def-box border-teal bg-teal">
+    <div class="db-label c-teal">Funci&oacute;n inversamente proporcional</div>
+    <div class="db-text">y = k/x (k &ne; 0). Gr&aacute;fica: hip&eacute;rbola.<br>Dominio: x &ne; 0. Recorrido: y &ne; 0.<br>Si k&gt;0: cuadrantes 1.&ordm; y 3.&ordm;. Si k&lt;0: 2.&ordm; y 4.&ordm;</div>
+  </div>
+</div>
+
+<div class="sh c-teal">Funciones definidas a trozos</div>
+<div class="def-box border-blue bg-blue">
+  <div class="db-label c-blue">Definici&oacute;n</div>
+  <div class="db-text">Se define con distintas f&oacute;rmulas seg&uacute;n el intervalo de x. Para evaluar, se sustituye x en la expresi&oacute;n del tramo correspondiente. Para representarla, se dibuja cada tramo solo en su intervalo.</div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-teal">Ejemplo resuelto 1 &mdash; Ecuaci&oacute;n de la recta</div>
+  <div class="s-q">Halla la ecuaci&oacute;n de la recta perpendicular a y=2x+1 que pasa por el punto (4,3).</div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">1</div><div class="step-t">Pendiente de la recta dada: m=2. Pendiente perpendicular: m'=&minus;1/2</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">2</div><div class="step-t">Ecuaci&oacute;n punto-pendiente con (4,3): y&minus;3 = &minus;1/2&middot;(x&minus;4)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">3</div><div class="step-t">Despejar: y = &minus;x/2 + 2 + 3 = &minus;x/2 + 5</div></div>
+  <span class="step-r bg-teal c-teal">y = &minus;(1/2)x + 5</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-teal">Ejemplo resuelto 2 &mdash; An&aacute;lisis de par&aacute;bola</div>
+  <div class="s-q">Para f(x)=&minus;x<sup>2</sup>+4x&minus;3: halla v&eacute;rtice, ceros, signo y crecimiento.</div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">1</div><div class="step-t">a=&minus;1&lt;0 &rarr; par&aacute;bola hacia abajo (m&aacute;ximo).</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">2</div><div class="step-t">V&eacute;rtice: x<sub>v</sub>=&minus;4/(2&middot;&minus;1)=2 &nbsp; y<sub>v</sub>=&minus;4+8&minus;3=1 &rarr; V=(2,1)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">3</div><div class="step-t">Ceros: &minus;x<sup>2</sup>+4x&minus;3=0 &rarr; x<sup>2</sup>&minus;4x+3=0 &rarr; (x&minus;1)(x&minus;3)=0 &rarr; x=1, x=3</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">4</div><div class="step-t">Signo: f(x)&gt;0 en (1,3); f(x)&lt;0 en (&minus;&infin;,1) &cup; (3,+&infin;)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">5</div><div class="step-t">Creciente en (&minus;&infin;,2); decreciente en (2,+&infin;)</div></div>
+  <span class="step-r bg-teal c-teal">V=(2,1) &middot; ceros x=1 y x=3 &middot; m&aacute;ximo en x=2</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-teal">Ejemplo resuelto 3 &mdash; Lectura de gr&aacute;fica</div>
+  <div class="s-q">De una gr&aacute;fica sabemos: f es creciente en (&minus;&infin;,2), tiene m&aacute;ximo en (2,5), es decreciente en (2,6), cero en x=6 y negativa en (6,+&infin;). Indica el dominio, cero, m&aacute;ximo y signo.</div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">1</div><div class="step-t">Dominio: todos los reales (o el intervalo observado en la gr&aacute;fica)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">2</div><div class="step-t">Cero: x=6 (corte con eje X)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">3</div><div class="step-t">M&aacute;ximo relativo: (2,5)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--teal)">4</div><div class="step-t">Signo: positiva antes de x=6, negativa despu&eacute;s</div></div>
+  <span class="step-r bg-teal c-teal">Lectura correcta de todas las caracter&iacute;sticas</span>
+</div>
+
+<div class="tip-box border-amber bg-amber">
+  <div class="tb-label c-amber">&#9888; Errores t&iacute;picos</div>
+  <div class="tb-text">
+  &bull; El v&eacute;rtice NO es (b,c): es x<sub>v</sub>=&minus;b/(2a) y hay que calcular y<sub>v</sub>=f(x<sub>v</sub>).<br>
+  &bull; Rectas perpendiculares: m' = &minus;1/m (no &minus;m).<br>
+  &bull; Confundir cero (x donde f=0) con ordenada en el origen (f(0)).<br>
+  &bull; En funciones a trozos, usar la f&oacute;rmula del intervalo correcto.
+  </div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-geometria">
+<div class="page-header">
+  <div class="ph-tag c-orange">Bloque 4 &mdash; &Eacute;nfasis</div>
+  <h2>Geometr&iacute;a</h2>
+  <p>&Aacute;ngulos, figuras planas, teorema de Pit&aacute;goras, pol&iacute;gonos regulares, cuerpos geom&eacute;tricos y geometr&iacute;a espacial.</p>
+</div>
+
+<div class="sh c-orange">Teorema de Pit&aacute;goras</div>
+<div class="formula border-orange">
+  <div class="f-label c-orange">Teorema de Pit&aacute;goras</div>
+  <div class="f-main">c<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup></div>
+  <div class="f-note">c = hipotenusa (lado opuesto al &aacute;ngulo recto) &nbsp;|&nbsp; a, b = catetos<br>Para verificar si es rect&aacute;ngulo: comprobar c<sup>2</sup>=a<sup>2</sup>+b<sup>2</sup></div>
+</div>
+<div class="def-box border-orange bg-orange">
+  <div class="db-label c-orange">Aplicaciones</div>
+  <div class="db-text">
+  &bull; Hallar la diagonal de un rect&aacute;ngulo: d = &radic;(l<sup>2</sup>+a<sup>2</sup>).<br>
+  &bull; Hallar la altura de un tri&aacute;ngulo is&oacute;sceles o equil&aacute;tero.<br>
+  &bull; Calcular distancias en el plano: d = &radic;(&Delta;x<sup>2</sup>+&Delta;y<sup>2</sup>).<br>
+  &bull; Tri&aacute;ngulos pita&oacute;ricos cl&aacute;sicos: (3,4,5), (5,12,13), (8,15,17).
+  </div>
+</div>
+
+<div class="sh c-orange">&Aacute;reas de figuras planas</div>
+<div class="grid-3">
+  <div class="formula border-orange"><div class="f-label c-orange">Tri&aacute;ngulo</div><div class="f-main">A = b&middot;h / 2</div></div>
+  <div class="formula border-teal"><div class="f-label c-teal">Rect&aacute;ngulo / Paralelogramo</div><div class="f-main">A = b &middot; h</div></div>
+  <div class="formula border-blue"><div class="f-label c-blue">Trapecio</div><div class="f-main">A = (B+b)&middot;h / 2</div></div>
+  <div class="formula border-violet"><div class="f-label c-violet">Rombo</div><div class="f-main">A = (D&middot;d) / 2</div><div class="f-note">D=diagonal mayor, d=menor</div></div>
+  <div class="formula border-rose"><div class="f-label c-rose">Pol&iacute;gono regular</div><div class="f-main">A = (P&middot;a) / 2</div><div class="f-note">P=per&iacute;metro, a=apotema</div></div>
+  <div class="formula border-green"><div class="f-label c-green">C&iacute;rculo</div><div class="f-main">A = &pi;&middot;r<sup>2</sup></div><div class="f-note">Longitud: L=2&pi;r</div></div>
+</div>
+<div class="grid-2">
+  <div class="formula border-orange">
+    <div class="f-label c-orange">Sector circular</div>
+    <div class="f-main">A = (&alpha;/360)&middot;&pi;r<sup>2</sup></div>
+    <div class="f-note">Arco: L = (&alpha;/360)&middot;2&pi;r &nbsp; (&alpha; en grados)</div>
+  </div>
+  <div class="def-box border-blue bg-blue">
+    <div class="db-label c-blue">Pol&iacute;gonos regulares &mdash; &aacute;ngulos</div>
+    <div class="db-text">Suma &aacute;ng. interiores: S=(n&minus;2)&middot;180&deg;<br>&Aacute;ng. interior: &alpha;=(n&minus;2)&middot;180&deg; / n<br>&Aacute;ng. central: 360&deg;/n</div>
+  </div>
+</div>
+
+<div class="sh c-orange">Geometr&iacute;a espacial &mdash; cuerpos geom&eacute;tricos</div>
+<div class="def-box border-orange bg-orange">
+  <div class="db-label c-orange">Conceptos clave</div>
+  <div class="db-text">
+  <b>Cara:</b> superficie plana que limita el s&oacute;lido. <b>Arista:</b> l&iacute;nea de uni&oacute;n de dos caras. <b>V&eacute;rtice:</b> punto de uni&oacute;n de aristas.<br>
+  <b>F&oacute;rmula de Euler (poliedros):</b> C + V &minus; A = 2 &nbsp; (caras + v&eacute;rtices &minus; aristas = 2)
+  </div>
+</div>
+
+<div class="t-wrap">
+  <table>
+    <tr><th>S&oacute;lido</th><th>Caras/V/A</th><th>&Aacute;rea lateral</th><th>&Aacute;rea total</th><th>Volumen</th></tr>
+    <tr><td><b>Cubo</b> (arista a)</td><td>6 / 8 / 12</td><td>4a<sup>2</sup></td><td>6a<sup>2</sup></td><td>a<sup>3</sup></td></tr>
+    <tr><td><b>Paralelepípedo</b> (a,b,c)</td><td>6 / 8 / 12</td><td>&mdash;</td><td>2(ab+bc+ca)</td><td>a&middot;b&middot;c</td></tr>
+    <tr><td><b>Prisma</b> (base B, h)</td><td>&mdash;</td><td>P<sub>base</sub>&middot;h</td><td>A<sub>lat</sub>+2A<sub>base</sub></td><td>A<sub>base</sub>&middot;h</td></tr>
+    <tr><td><b>Cilindro</b> (r,h)</td><td>&mdash;</td><td>2&pi;rh</td><td>2&pi;r(r+h)</td><td>&pi;r<sup>2</sup>h</td></tr>
+    <tr><td><b>Pir&aacute;mide</b> (base B, h)</td><td>&mdash;</td><td>&Sigma; caras lat.</td><td>A<sub>lat</sub>+A<sub>base</sub></td><td>A<sub>base</sub>&middot;h/3</td></tr>
+    <tr><td><b>Cono</b> (r,h,g)</td><td>&mdash;</td><td>&pi;rg</td><td>&pi;r(r+g)</td><td>&pi;r<sup>2</sup>h/3</td></tr>
+    <tr><td><b>Esfera</b> (r)</td><td>&mdash;</td><td>&mdash;</td><td>4&pi;r<sup>2</sup></td><td>4&pi;r<sup>3</sup>/3</td></tr>
+  </table>
+</div>
+<div class="def-box border-blue bg-blue">
+  <div class="db-label c-blue">Generatriz del cono</div>
+  <div class="db-text">La generatriz g es la distancia del v&eacute;rtice a cualquier punto de la circunferencia base.<br><b>g = &radic;(r<sup>2</sup> + h<sup>2</sup>)</b> (Pit&aacute;goras: g es la hipotenusa, r y h son los catetos).</div>
+</div>
+
+<div class="sh c-orange">Cuerpos de revoluci&oacute;n y secciones</div>
+<div class="grid-3">
+  <div class="card" style="border-top:3px solid var(--orange)">
+    <div class="card-title c-orange">Cilindro</div>
+    <div class="card-body">Generado al girar un rect&aacute;ngulo alrededor de uno de sus lados.<br>Secci&oacute;n transversal: c&iacute;rculo.</div>
+  </div>
+  <div class="card" style="border-top:3px solid var(--blue)">
+    <div class="card-title c-blue">Cono</div>
+    <div class="card-body">Generado al girar un tri&aacute;ngulo rect&aacute;ngulo alrededor de uno de sus catetos.<br>Secci&oacute;n transversal: c&iacute;rculo.</div>
+  </div>
+  <div class="card" style="border-top:3px solid var(--violet)">
+    <div class="card-title c-violet">Esfera</div>
+    <div class="card-body">Generada al girar una semicircunferencia alrededor de su di&aacute;metro.<br>Toda secci&oacute;n plana: c&iacute;rculo.</div>
+  </div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-orange">Ejemplo resuelto 1 &mdash; Cono</div>
+  <div class="s-q">Un cono tiene r=6 cm y h=8 cm. Calcula la generatriz, el &aacute;rea total y el volumen.</div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">1</div><div class="step-t">Generatriz: g=&radic;(6<sup>2</sup>+8<sup>2</sup>)=&radic;(36+64)=&radic;100=10 cm</div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">2</div><div class="step-t">A<sub>lat</sub>=&pi;&middot;6&middot;10=60&pi; cm<sup>2</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">3</div><div class="step-t">A<sub>base</sub>=&pi;&middot;6<sup>2</sup>=36&pi; cm<sup>2</sup> &nbsp; A<sub>total</sub>=60&pi;+36&pi;=96&pi;&asymp;301,6 cm<sup>2</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">4</div><div class="step-t">V=&pi;&middot;36&middot;8/3=96&pi;&asymp;301,6 cm<sup>3</sup></div></div>
+  <span class="step-r bg-orange c-orange">g=10 cm &middot; A=96&pi; cm<sup>2</sup> &middot; V=96&pi; cm<sup>3</sup></span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-orange">Ejemplo resuelto 2 &mdash; Esfera y cilindro</div>
+  <div class="s-q">Una esfera est&aacute; inscrita en un cilindro (r=5 cm). Calcula volumen de ambos y el cociente V<sub>esfera</sub>/V<sub>cilindro</sub>.</div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">1</div><div class="step-t">La esfera inscrita tiene r=5, el cilindro r=5 y h=2r=10</div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">2</div><div class="step-t">V<sub>esfera</sub>=4&pi;&middot;125/3=500&pi;/3 cm<sup>3</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">3</div><div class="step-t">V<sub>cilindro</sub>=&pi;&middot;25&middot;10=250&pi; cm<sup>3</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">4</div><div class="step-t">Cociente: (500&pi;/3)/(250&pi;) = 2/3</div></div>
+  <span class="step-r bg-orange c-orange">V<sub>esfera</sub>/V<sub>cilindro</sub> = 2/3</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-orange">Ejemplo resuelto 3 &mdash; Pir&aacute;mide</div>
+  <div class="s-q">Una pir&aacute;mide de base cuadrada con lado 6 cm y altura 4 cm. Calcula &aacute;rea total y volumen.</div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">1</div><div class="step-t">A<sub>base</sub>=6<sup>2</sup>=36 cm<sup>2</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">2</div><div class="step-t">Apotema de cara: a<sub>c</sub>=&radic;(3<sup>2</sup>+4<sup>2</sup>)=&radic;25=5 cm (la mitad del lado es 3, la altura es 4)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">3</div><div class="step-t">A<sub>lat</sub>=4&middot;(6&middot;5/2)=60 cm<sup>2</sup> &nbsp; A<sub>total</sub>=36+60=96 cm<sup>2</sup></div></div>
+  <div class="step"><div class="step-n" style="background:var(--orange)">4</div><div class="step-t">V=36&middot;4/3=48 cm<sup>3</sup></div></div>
+  <span class="step-r bg-orange c-orange">A<sub>total</sub>=96 cm<sup>2</sup> &middot; V=48 cm<sup>3</sup></span>
+</div>
+
+<div class="tip-box border-amber bg-amber">
+  <div class="tb-label c-amber">&#9888; Errores t&iacute;picos</div>
+  <div class="tb-text">
+  &bull; Cono y pir&aacute;mide: el volumen siempre lleva /3.<br>
+  &bull; La generatriz del cono NO es la altura: g=&radic;(r<sup>2</sup>+h<sup>2</sup>).<br>
+  &bull; Apotema del pol&iacute;gono &ne; lado del pol&iacute;gono.<br>
+  &bull; &Aacute;rea total = lateral + bases (no olvidar las bases).
+  </div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-vectores">
+<div class="page-header">
+  <div class="ph-tag c-cyan">Bloque 5 &mdash; &Eacute;nfasis</div>
+  <h2>Vectores en el plano</h2>
+  <p>Concepto, operaciones, m&oacute;dulo, punto medio, distancia y producto escalar.</p>
+</div>
+<style>
+  .vec{font-weight:800;text-decoration:overline;font-style:normal;letter-spacing:.02em;}
+</style>
+
+<div class="sh c-cyan">Concepto de vector</div>
+<div class="def-box border-cyan bg-cyan">
+  <div class="db-label c-cyan">Definici&oacute;n</div>
+  <div class="db-text">Un <b>vector</b> es un segmento orientado con <b>m&oacute;dulo</b> (longitud), <b>direcci&oacute;n</b> y <b>sentido</b>. Se denota <b><span class="vec">AB</span></b> o bien <b><span class="vec">v</span></b>.<br>
+  Vector con origen A(x<sub>1</sub>,y<sub>1</sub>) y extremo B(x<sub>2</sub>,y<sub>2</sub>):<br>
+  <b><span class="vec">AB</span> = (x<sub>2</sub>&minus;x<sub>1</sub> , y<sub>2</sub>&minus;y<sub>1</sub>)</b><br>
+  Las componentes se calculan siempre como extremo menos origen.</div>
+</div>
+<div class="grid-3">
+  <div class="card" style="border-top:3px solid var(--cyan)"><div class="card-title c-cyan">M&oacute;dulo</div><div class="card-body">|<span class="vec">v</span>| = &radic;(v<sub>x</sub><sup>2</sup> + v<sub>y</sub><sup>2</sup>)<br>Longitud del vector. Siempre &ge; 0.</div></div>
+  <div class="card" style="border-top:3px solid var(--blue)"><div class="card-title c-blue">Vector unitario</div><div class="card-body">M&oacute;dulo = 1. Se obtiene dividiendo entre su m&oacute;dulo:<br><span class="vec">u</span><sub>0</sub> = <span class="vec">v</span> / |<span class="vec">v</span>|</div></div>
+  <div class="card" style="border-top:3px solid var(--violet)"><div class="card-title c-violet">Vectores equipolentes</div><div class="card-body">Dos vectores son iguales si tienen las mismas componentes (mismo m&oacute;dulo, direcci&oacute;n y sentido).</div></div>
+</div>
+
+<div class="sh c-cyan">Operaciones con vectores</div>
+<div class="grid-3">
+  <div class="formula border-cyan">
+    <div class="f-label c-cyan">Suma</div>
+    <div class="f-main"><span class="vec">u</span>+<span class="vec">v</span> = (u<sub>x</sub>+v<sub>x</sub>, u<sub>y</sub>+v<sub>y</sub>)</div>
+    <div class="f-note">Regla del paralelogramo o triangulo</div>
+  </div>
+  <div class="formula border-blue">
+    <div class="f-label c-blue">Resta</div>
+    <div class="f-main"><span class="vec">u</span>&minus;<span class="vec">v</span> = (u<sub>x</sub>&minus;v<sub>x</sub>, u<sub>y</sub>&minus;v<sub>y</sub>)</div>
+  </div>
+  <div class="formula border-violet">
+    <div class="f-label c-violet">Producto por escalar k</div>
+    <div class="f-main">k&middot;<span class="vec">v</span> = (k&middot;v<sub>x</sub>, k&middot;v<sub>y</sub>)</div>
+    <div class="f-note">Si k&lt;0 cambia el sentido. Si k=0 vector nulo.</div>
+  </div>
+</div>
+
+<div class="sh c-cyan">Distancia y punto medio</div>
+<div class="grid-2">
+  <div class="formula border-cyan">
+    <div class="f-label c-cyan">Distancia entre A y B</div>
+    <div class="f-main">d(A,B) = &radic;((x<sub>2</sub>&minus;x<sub>1</sub>)<sup>2</sup>+(y<sub>2</sub>&minus;y<sub>1</sub>)<sup>2</sup>)</div>
+    <div class="f-note">Equivale al m&oacute;dulo del vector <span class="vec">AB</span></div>
+  </div>
+  <div class="formula border-teal">
+    <div class="f-label c-teal">Punto medio M de AB</div>
+    <div class="f-main">M = ((x<sub>1</sub>+x<sub>2</sub>)/2 , (y<sub>1</sub>+y<sub>2</sub>)/2)</div>
+  </div>
+</div>
+
+<div class="sh c-cyan">Producto escalar</div>
+<div class="formula border-cyan">
+  <div class="f-label c-cyan">Producto escalar (definici&oacute;n anal&iacute;tica)</div>
+  <div class="f-main"><span class="vec">u</span> &middot; <span class="vec">v</span> = u<sub>x</sub>&middot;v<sub>x</sub> + u<sub>y</sub>&middot;v<sub>y</sub></div>
+  <div class="f-note">Tambi&eacute;n: <span class="vec">u</span>&middot;<span class="vec">v</span> = |<span class="vec">u</span>|&middot;|<span class="vec">v</span>|&middot;cos(&alpha;)<br>
+  Vectores <b>perpendiculares</b>: <span class="vec">u</span>&middot;<span class="vec">v</span>=0 &nbsp;|&nbsp; Vectores <b>paralelos</b>: <span class="vec">u</span>&middot;<span class="vec">v</span>=&plusmn;|<span class="vec">u</span>|&middot;|<span class="vec">v</span>|</div>
+</div>
+
+<div class="grid-2">
+  <div class="def-box border-blue bg-blue">
+    <div class="db-label c-blue">Condici&oacute;n de perpendicularidad</div>
+    <div class="db-text">Dos vectores <span class="vec">u</span>=(a,b) y <span class="vec">v</span>=(c,d) son <b>perpendiculares</b> si y solo si:<br><b>a&middot;c + b&middot;d = 0</b></div>
+  </div>
+  <div class="def-box border-violet bg-violet">
+    <div class="db-label c-violet">Condici&oacute;n de paralelismo</div>
+    <div class="db-text">Dos vectores <span class="vec">u</span>=(a,b) y <span class="vec">v</span>=(c,d) son <b>paralelos</b> si y solo si:<br><b>a&middot;d &minus; b&middot;c = 0</b></div>
+  </div>
+</div>
+
+<div class="sh c-cyan">Aplicaciones: baricentro y reparti&oacute;n de segmentos</div>
+<div class="def-box border-teal bg-teal">
+  <div class="db-label c-teal">Baricentro de un tri&aacute;ngulo</div>
+  <div class="db-text">El baricentro G de un tri&aacute;ngulo A(x<sub>1</sub>,y<sub>1</sub>), B(x<sub>2</sub>,y<sub>2</sub>), C(x<sub>3</sub>,y<sub>3</sub>) es:<br>
+  <b>G = ((x<sub>1</sub>+x<sub>2</sub>+x<sub>3</sub>)/3 , (y<sub>1</sub>+y<sub>2</sub>+y<sub>3</sub>)/3)</b><br>
+  Es la intersecci&oacute;n de las medianas.</div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-cyan">Ejemplo resuelto 1 &mdash; Operaciones vectoriales</div>
+  <div class="s-q">Dados <span class="vec">u</span>=(3,&minus;1) y <span class="vec">v</span>=(2,4). Calcula <span class="vec">u</span>+<span class="vec">v</span>, 2<span class="vec">u</span>&minus;<span class="vec">v</span>, |<span class="vec">u</span>| y el producto escalar.</div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">1</div><div class="step-t"><span class="vec">u</span>+<span class="vec">v</span> = (3+2, &minus;1+4) = (5, 3)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">2</div><div class="step-t">2<span class="vec">u</span>&minus;<span class="vec">v</span> = (6&minus;2, &minus;2&minus;4) = (4, &minus;6)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">3</div><div class="step-t">|<span class="vec">u</span>| = &radic;(9+1) = &radic;10</div></div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">4</div><div class="step-t"><span class="vec">u</span>&middot;<span class="vec">v</span> = 3&middot;2 + (&minus;1)&middot;4 = 6&minus;4 = 2</div></div>
+  <span class="step-r bg-cyan c-cyan"><span class="vec">u</span>+<span class="vec">v</span>=(5,3) &middot; 2<span class="vec">u</span>&minus;<span class="vec">v</span>=(4,&minus;6) &middot; |<span class="vec">u</span>|=&radic;10 &middot; <span class="vec">u</span>&middot;<span class="vec">v</span>=2</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-cyan">Ejemplo resuelto 2 &mdash; &Aacute;ngulo entre vectores</div>
+  <div class="s-q">Calcula el &aacute;ngulo entre <span class="vec">u</span>=(1,0) y <span class="vec">v</span>=(1,1).</div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">1</div><div class="step-t"><span class="vec">u</span>&middot;<span class="vec">v</span> = 1&middot;1+0&middot;1 = 1</div></div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">2</div><div class="step-t">|<span class="vec">u</span>|=1 &nbsp; |<span class="vec">v</span>|=&radic;2</div></div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">3</div><div class="step-t">cos(&alpha;) = 1/(1&middot;&radic;2) = 1/&radic;2 &rarr; &alpha; = 45&deg;</div></div>
+  <span class="step-r bg-cyan c-cyan">El &aacute;ngulo es 45&deg;</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-cyan">Ejemplo resuelto 3 &mdash; Baricentro</div>
+  <div class="s-q">Halla el baricentro del tri&aacute;ngulo A(0,0), B(6,0), C(3,6).</div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">1</div><div class="step-t">G<sub>x</sub> = (0+6+3)/3 = 9/3 = 3</div></div>
+  <div class="step"><div class="step-n" style="background:var(--cyan)">2</div><div class="step-t">G<sub>y</sub> = (0+0+6)/3 = 2</div></div>
+  <span class="step-r bg-cyan c-cyan">G = (3, 2)</span>
+</div>
+
+<div class="tip-box border-amber bg-amber">
+  <div class="tb-label c-amber">&#9888; Errores t&iacute;picos</div>
+  <div class="tb-text">
+  &bull; <span class="vec">AB</span> = B&minus;A (extremo menos origen), NO A&minus;B.<br>
+  &bull; El m&oacute;dulo siempre es positivo o cero.<br>
+  &bull; Perpendicularidad: producto escalar = 0 (no el m&oacute;dulo).<br>
+  &bull; El punto medio es la media de las coordenadas, no la diferencia.
+  </div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-semejanza">
+<div class="page-header">
+  <div class="ph-tag c-rose">Bloque 6 &mdash; &Eacute;nfasis</div>
+  <h2>Semejanza</h2>
+  <p>Figuras semejantes, raz&oacute;n de semejanza, Teorema de Tales, criterios de semejanza y escalas.</p>
+</div>
+
+<div class="sh c-rose">Figuras semejantes</div>
+<div class="def-box border-rose bg-rose">
+  <div class="db-label c-rose">Semejanza</div>
+  <div class="db-text">Dos figuras son <b>semejantes</b> si tienen la misma forma pero (posiblemente) distinto tama&ntilde;o. Condiciones:<br>
+  &bull; &Aacute;ngulos correspondientes iguales.<br>
+  &bull; Lados correspondientes proporcionales con la misma raz&oacute;n k (raz&oacute;n de semejanza).</div>
+</div>
+<div class="grid-2">
+  <div class="formula border-rose">
+    <div class="f-label c-rose">Raz&oacute;n de semejanza</div>
+    <div class="f-main">k = l' / l</div>
+    <div class="f-note">l' = lado figura transformada, l = lado figura original<br>k &gt; 1: ampliaci&oacute;n &nbsp;|&nbsp; k &lt; 1: reducci&oacute;n &nbsp;|&nbsp; k = 1: figuras congruentes</div>
+  </div>
+  <div class="formula border-pink">
+    <div class="f-label c-pink">Relaci&oacute;n de &aacute;reas y vol&uacute;menes</div>
+    <div class="f-main">A'/A = k<sup>2</sup> &nbsp;&nbsp;&nbsp; V'/V = k<sup>3</sup></div>
+    <div class="f-note">Si k=2: &aacute;rea &times;4 y volumen &times;8</div>
+  </div>
+</div>
+
+<div class="sh c-rose">Teorema de Tales</div>
+<div class="def-box border-rose bg-rose">
+  <div class="db-label c-rose">Enunciado</div>
+  <div class="db-text">
+  Si una recta es <b>paralela a un lado de un tri&aacute;ngulo</b> y corta a los otros dos lados, divide esos lados en segmentos proporcionales.<br><br>
+  En el tri&aacute;ngulo ABC, si MN es paralela a BC (con M en AB y N en AC), entonces:
+  </div>
+</div>
+<div class="grid-3">
+  <div class="formula border-rose">
+    <div class="f-label c-rose">Proporci&oacute;n de Tales (forma 1)</div>
+    <div class="f-main">AM / MB = AN / NC</div>
+    <div class="f-note">Segmentos proporcionales en cada lado</div>
+  </div>
+  <div class="formula border-pink">
+    <div class="f-label c-pink">Proporci&oacute;n de Tales (forma 2)</div>
+    <div class="f-main">AM / AB = AN / AC</div>
+    <div class="f-note">Segmento parcial sobre el lado completo</div>
+  </div>
+  <div class="formula border-violet">
+    <div class="f-label c-violet">Lado cortado MN</div>
+    <div class="f-main">MN / BC = AM / AB</div>
+    <div class="f-note">El segmento paralelo es proporcional al lado de la base</div>
+  </div>
+</div>
+<div class="def-box border-blue bg-blue">
+  <div class="db-label c-blue">Tales en un haz de rectas paralelas</div>
+  <div class="db-text">Si varias rectas paralelas cortan a dos transversales, los segmentos que determinan en cada transversal son proporcionales entre s&iacute;.<br>
+  Si a, b, c son paralelas que cortan a dos transversales en A,B,C y A',B',C' respectivamente:<br>
+  <b>AB / BC = A'B' / B'C'</b></div>
+</div>
+
+<div class="sh c-rose">Criterios de semejanza de tri&aacute;ngulos</div>
+<div class="grid-3">
+  <div class="card" style="border-top:3px solid var(--rose)">
+    <div class="card-title c-rose">Criterio AA (o AAA)</div>
+    <div class="card-body">Dos &aacute;ngulos iguales en ambos tri&aacute;ngulos. El tercero es autom&aacute;ticamente igual (suma de &aacute;ngulos = 180&deg;).</div>
+  </div>
+  <div class="card" style="border-top:3px solid var(--pink)">
+    <div class="card-title c-pink">Criterio LAL</div>
+    <div class="card-body">Un &aacute;ngulo igual comprendido entre dos pares de lados proporcionales.</div>
+  </div>
+  <div class="card" style="border-top:3px solid var(--violet)">
+    <div class="card-title c-violet">Criterio LLL</div>
+    <div class="card-body">Los tres pares de lados correspondientes son proporcionales (misma raz&oacute;n k).</div>
+  </div>
+</div>
+
+<div class="sh c-rose">Escalas</div>
+<div class="formula border-rose">
+  <div class="f-label c-rose">Escala de un mapa o plano</div>
+  <div class="f-main">E = distancia en el plano / distancia real</div>
+  <div class="f-note">E = 1 : 50 000 significa: 1 cm en el mapa = 50 000 cm = 500 m en la realidad<br>
+  Distancia real = distancia en mapa / E &nbsp;|&nbsp; Distancia en mapa = distancia real &times; E</div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-rose">Ejemplo resuelto 1 &mdash; Teorema de Tales</div>
+  <div class="s-q">En el tri&aacute;ngulo ABC, MN es paralela a BC. AB=10, AM=4, AC=15. Calcula AN, MB y NC.</div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">1</div><div class="step-t">MB = AB &minus; AM = 10 &minus; 4 = 6</div></div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">2</div><div class="step-t">Por Tales: AM/AB = AN/AC &rarr; 4/10 = AN/15 &rarr; AN = 15&middot;4/10 = 6</div></div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">3</div><div class="step-t">NC = AC &minus; AN = 15 &minus; 6 = 9</div></div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">4</div><div class="step-t">Verificaci&oacute;n: AM/MB = 4/6 = 2/3 y AN/NC = 6/9 = 2/3 &#10003;</div></div>
+  <span class="step-r bg-rose c-rose">AN=6 &middot; MB=6 &middot; NC=9</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-rose">Ejemplo resuelto 2 &mdash; Raz&oacute;n de semejanza y &aacute;reas</div>
+  <div class="s-q">Dos tri&aacute;ngulos semejantes tienen lados 5 cm y 8 cm respectivamente. El tri&aacute;ngulo menor tiene &aacute;rea 25 cm<sup>2</sup>. Calcula el &aacute;rea del mayor.</div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">1</div><div class="step-t">Raz&oacute;n de semejanza: k = 8/5</div></div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">2</div><div class="step-t">Raz&oacute;n de &aacute;reas: k<sup>2</sup> = (8/5)<sup>2</sup> = 64/25</div></div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">3</div><div class="step-t">A' = 25 &middot; (64/25) = 64 cm<sup>2</sup></div></div>
+  <span class="step-r bg-rose c-rose">A' = 64 cm<sup>2</sup></span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-rose">Ejemplo resuelto 3 &mdash; Escala + Tales aplicado</div>
+  <div class="s-q">Un &aacute;rbol proyecta una sombra de 9 m. En el mismo momento, una estaca de 2 m proyecta una sombra de 3 m. &iquest;Cu&aacute;nto mide el &aacute;rbol?</div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">1</div><div class="step-t">Por semejanza (rayos de sol paralelos): h<sub>&aacute;rbol</sub>/sombra<sub>&aacute;rbol</sub> = h<sub>estaca</sub>/sombra<sub>estaca</sub></div></div>
+  <div class="step"><div class="step-n" style="background:var(--rose)">2</div><div class="step-t">h/9 = 2/3 &rarr; h = 9 &middot; 2/3 = 6 m</div></div>
+  <span class="step-r bg-rose c-rose">El &aacute;rbol mide 6 m</span>
+</div>
+
+<div class="tip-box border-amber bg-amber">
+  <div class="tb-label c-amber">&#9888; Errores t&iacute;picos</div>
+  <div class="tb-text">
+  &bull; Las &aacute;reas escalan con k<sup>2</sup>, los vol&uacute;menes con k<sup>3</sup>: no multiplicar directamente por k.<br>
+  &bull; En Tales, el segmento parcial (AM) va sobre su lado completo (AB), no sobre el otro segmento (MB).<br>
+  &bull; Escala 1:n es reducci&oacute;n si n&gt;1; es ampliaci&oacute;n si n&lt;1.
+  </div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-estadistica">
+<div class="page-header">
+  <div class="ph-tag c-green">Bloque 7 &mdash; &Eacute;nfasis</div>
+  <h2>Estad&iacute;stica</h2>
+  <p>Variables, tablas de frecuencias, medidas de centralizaci&oacute;n y dispersi&oacute;n, e interpretaci&oacute;n gr&aacute;fica.</p>
+</div>
+
+<div class="sh c-green">Variables estad&iacute;sticas</div>
+<div class="grid-2">
+  <div class="card" style="border-top:3px solid var(--green)">
+    <div class="card-title c-green">Cualitativa</div>
+    <div class="card-body">Expresa una cualidad, no num&eacute;rica.<br><span class="card-ex">Color de ojos, deporte favorito, tipo de pel&iacute;cula</span></div>
+  </div>
+  <div class="card" style="border-top:3px solid var(--teal)">
+    <div class="card-title c-teal">Cuantitativa</div>
+    <div class="card-body"><b>Discreta:</b> valores aislados (n&uacute;mero de hijos, goles).<br><b>Continua:</b> valores en un intervalo (altura, temperatura).</div>
+  </div>
+</div>
+
+<div class="sh c-green">Tabla de frecuencias</div>
+<div class="t-wrap">
+  <table>
+    <tr><th>Tipo</th><th>Notaci&oacute;n</th><th>Definici&oacute;n</th><th>Propiedad</th></tr>
+    <tr><td><b>Frecuencia absoluta</b></td><td><b>f<sub>i</sub></b></td><td>N.&ordm; de veces que aparece el dato x<sub>i</sub></td><td>&Sigma;f<sub>i</sub> = N (total)</td></tr>
+    <tr><td><b>Frecuencia relativa</b></td><td><b>h<sub>i</sub></b></td><td>f<sub>i</sub> / N &nbsp; (proporci&oacute;n)</td><td>&Sigma;h<sub>i</sub> = 1</td></tr>
+    <tr><td><b>Frec. absoluta acumulada</b></td><td><b>F<sub>i</sub></b></td><td>Suma de f<sub>j</sub> hasta x<sub>i</sub> (inclusive)</td><td>F<sub>n</sub> = N</td></tr>
+    <tr><td><b>Frec. relativa acumulada</b></td><td><b>H<sub>i</sub></b></td><td>Suma de h<sub>j</sub> hasta x<sub>i</sub> (inclusive)</td><td>H<sub>n</sub> = 1</td></tr>
+  </table>
+</div>
+<div class="def-box border-green bg-green">
+  <div class="db-label c-green">Datos agrupados en intervalos</div>
+  <div class="db-text">Cuando los datos son muy numerosos o continuos, se agrupan en <b>intervalos [a, b)</b>.<br>
+  <b>Marca de clase</b> x<sub>i</sub>: punto medio del intervalo &rarr; x<sub>i</sub> = (a+b)/2.<br>
+  <b>Amplitud</b> del intervalo: c = b&minus;a. Todos los intervalos suelen tener la misma amplitud.</div>
+</div>
+
+<div class="sh c-green">Medidas de centralizaci&oacute;n</div>
+<div class="grid-3">
+  <div class="formula border-green">
+    <div class="f-label c-green">Media aritm&eacute;tica</div>
+    <div class="f-main">x&#772; = (&Sigma; f<sub>i</sub>&middot;x<sub>i</sub>) / N</div>
+    <div class="f-note">N = &Sigma;f<sub>i</sub> = total de datos</div>
+  </div>
+  <div class="def-box border-teal bg-teal" style="margin:0">
+    <div class="db-label c-teal">Mediana (Me)</div>
+    <div class="db-text">Valor central al ordenar los datos.<br>&bull; N impar: el dato central.<br>&bull; N par: media de los dos centrales.<br>En tabla: el dato cuya F<sub>i</sub> supera N/2 por primera vez.</div>
+  </div>
+  <div class="def-box border-blue bg-blue" style="margin:0">
+    <div class="db-label c-blue">Moda (Mo)</div>
+    <div class="db-text">Dato con mayor frecuencia absoluta f<sub>i</sub>.<br>Puede haber m&aacute;s de una moda (bimodal) o ninguna.<br>En intervalos: intervalo modal = el de mayor frecuencia.</div>
+  </div>
+</div>
+
+<div class="sh c-green">Medidas de dispersi&oacute;n</div>
+<div class="grid-3">
+  <div class="formula border-green">
+    <div class="f-label c-green">Varianza</div>
+    <div class="f-main">&sigma;<sup>2</sup> = (&Sigma; f<sub>i</sub>&middot;(x<sub>i</sub>&minus;x&#772;)<sup>2</sup>) / N</div>
+    <div class="f-note">Siempre &ge; 0. Si todos los datos son iguales, &sigma;<sup>2</sup>=0.</div>
+  </div>
+  <div class="formula border-teal">
+    <div class="f-label c-teal">Desviaci&oacute;n t&iacute;pica</div>
+    <div class="f-main">&sigma; = &radic;(&sigma;<sup>2</sup>)</div>
+    <div class="f-note">Mismas unidades que los datos.<br>Mide la dispersi&oacute;n respecto a la media.</div>
+  </div>
+  <div class="def-box border-blue bg-blue" style="margin:0">
+    <div class="db-label c-blue">Recorrido (rango)</div>
+    <div class="db-text">R = x<sub>m&aacute;x</sub> &minus; x<sub>m&iacute;n</sub><br><br>Medida simple de dispersi&oacute;n. Sensible a valores extremos.</div>
+  </div>
+</div>
+
+<div class="sh c-green">Gr&aacute;ficos estad&iacute;sticos</div>
+<div class="grid-4">
+  <div class="card" style="border-top:3px solid var(--green)"><div class="card-title c-green">Diagrama de barras</div><div class="card-body">Variables discretas o cualitativas. Cada barra es proporcional a f<sub>i</sub>.</div></div>
+  <div class="card" style="border-top:3px solid var(--teal)"><div class="card-title c-teal">Histograma</div><div class="card-body">Variables continuas agrupadas. Las barras son adyacentes.</div></div>
+  <div class="card" style="border-top:3px solid var(--blue)"><div class="card-title c-blue">Diagrama sectorial</div><div class="card-body">Proporciones. &Aacute;ngulo = h<sub>i</sub> &times; 360&deg;</div></div>
+  <div class="card" style="border-top:3px solid var(--violet)"><div class="card-title c-violet">Pol&iacute;gono de frecuencias</div><div class="card-body">Une los puntos medios de las barras del histograma.</div></div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-green">Ejemplo resuelto &mdash; Tabla de frecuencias completa</div>
+  <div class="s-q">Datos de notas: 5, 6, 6, 7, 7, 7, 8, 8, 9, 10. Construye la tabla y calcula media, mediana, moda y desviaci&oacute;n t&iacute;pica.</div>
+  <div class="t-wrap">
+    <table>
+      <tr><th>x<sub>i</sub></th><th>f<sub>i</sub></th><th>h<sub>i</sub></th><th>F<sub>i</sub></th><th>H<sub>i</sub></th><th>f<sub>i</sub>&middot;x<sub>i</sub></th><th>f<sub>i</sub>&middot;(x<sub>i</sub>&minus;x&#772;)<sup>2</sup></th></tr>
+      <tr><td>5</td><td>1</td><td>0,1</td><td>1</td><td>0,1</td><td>5</td><td>1&middot;(5&minus;7,3)<sup>2</sup>=5,29</td></tr>
+      <tr><td>6</td><td>2</td><td>0,2</td><td>3</td><td>0,3</td><td>12</td><td>2&middot;(6&minus;7,3)<sup>2</sup>=3,38</td></tr>
+      <tr><td>7</td><td>3</td><td>0,3</td><td>6</td><td>0,6</td><td>21</td><td>3&middot;(7&minus;7,3)<sup>2</sup>=0,27</td></tr>
+      <tr><td>8</td><td>2</td><td>0,2</td><td>8</td><td>0,8</td><td>16</td><td>2&middot;(8&minus;7,3)<sup>2</sup>=0,98</td></tr>
+      <tr><td>9</td><td>1</td><td>0,1</td><td>9</td><td>0,9</td><td>9</td><td>1&middot;(9&minus;7,3)<sup>2</sup>=2,89</td></tr>
+      <tr><td>10</td><td>1</td><td>0,1</td><td>10</td><td>1,0</td><td>10</td><td>1&middot;(10&minus;7,3)<sup>2</sup>=7,29</td></tr>
+      <tr><td><b>Total</b></td><td><b>10</b></td><td><b>1,0</b></td><td>&mdash;</td><td>&mdash;</td><td><b>73</b></td><td><b>20,10</b></td></tr>
+    </table>
+  </div>
+  <div class="step"><div class="step-n" style="background:var(--green)">1</div><div class="step-t">Media: x&#772; = 73/10 = 7,3</div></div>
+  <div class="step"><div class="step-n" style="background:var(--green)">2</div><div class="step-t">Mediana: N=10 (par) &rarr; datos 5.&ordm; y 6.&ordm; = 7 y 7 &rarr; Me = 7</div></div>
+  <div class="step"><div class="step-n" style="background:var(--green)">3</div><div class="step-t">Moda: Mo = 7 (f<sub>i</sub>=3, la mayor)</div></div>
+  <div class="step"><div class="step-n" style="background:var(--green)">4</div><div class="step-t">Varianza: &sigma;<sup>2</sup> = 20,10/10 = 2,01 &nbsp; Desv. t&iacute;pica: &sigma; = &radic;2,01 &asymp; 1,42</div></div>
+  <span class="step-r bg-green c-green">x&#772;=7,3 &middot; Me=7 &middot; Mo=7 &middot; &sigma;&asymp;1,42</span>
+</div>
+
+<div class="tip-box border-amber bg-amber">
+  <div class="tb-label c-amber">&#9888; Errores t&iacute;picos</div>
+  <div class="tb-text">
+  &bull; &Sigma;h<sub>i</sub> = 1 siempre (no 100): h<sub>i</sub> es proporci&oacute;n, no porcentaje.<br>
+  &bull; En la varianza, las diferencias (x<sub>i</sub>&minus;x&#772;) se elevan al cuadrado (siempre positivas).<br>
+  &bull; La mediana no es la media de todos los datos, sino el valor central tras ordenar.<br>
+  &bull; En datos agrupados, usar la marca de clase x<sub>i</sub> = (a+b)/2 para calcular la media.
+  </div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-probabilidad">
+<div class="page-header">
+  <div class="ph-tag c-amber">Bloque 8 &mdash; &Eacute;nfasis</div>
+  <h2>Probabilidad</h2>
+  <p>Espacio muestral, sucesos, Laplace, probabilidad compuesta e independencia.</p>
+</div>
+
+<div class="sh c-amber">Espacio muestral y sucesos</div>
+<div class="def-box border-amber bg-amber">
+  <div class="db-label c-amber">Experimento aleatorio y espacio muestral</div>
+  <div class="db-text"><b>Experimento aleatorio:</b> resultado no predecible (dado, carta, urna).<br>
+  <b>Espacio muestral E:</b> conjunto de todos los posibles resultados.<br>
+  Dado de 6 caras: E = {1,2,3,4,5,6} &rarr; 6 sucesos elementales.</div>
+</div>
+<div class="grid-4">
+  <div class="card" style="border-top:3px solid var(--amber)"><div class="card-title c-amber">Suceso elemental</div><div class="card-body">Un solo resultado. {3}</div></div>
+  <div class="card" style="border-top:3px solid var(--blue)"><div class="card-title c-blue">Suceso compuesto</div><div class="card-body">Varios resultados. {2,4,6}</div></div>
+  <div class="card" style="border-top:3px solid var(--green)"><div class="card-title c-green">Suceso seguro</div><div class="card-body">P=1. Ocurre siempre. E completo.</div></div>
+  <div class="card" style="border-top:3px solid var(--rose)"><div class="card-title c-rose">Suceso imposible</div><div class="card-body">P=0. Nunca ocurre. Conjunto vac&iacute;o.</div></div>
+</div>
+
+<div class="sh c-amber">Operaciones con sucesos</div>
+<div class="grid-3">
+  <div class="card" style="border-left:3px solid var(--amber)"><div class="card-title c-amber">Uni&oacute;n A &cup; B</div><div class="card-body">Ocurre A o B (o ambos). Todos los resultados de A y B.</div></div>
+  <div class="card" style="border-left:3px solid var(--blue)"><div class="card-title c-blue">Intersecci&oacute;n A &cap; B</div><div class="card-body">Ocurren A y B a la vez. Solo los resultados comunes.</div></div>
+  <div class="card" style="border-left:3px solid var(--violet)"><div class="card-title c-violet">Suceso contrario &Acirc;</div><div class="card-body">Todo lo que NO es A. P(&Acirc;) = 1 &minus; P(A).</div></div>
+</div>
+<div class="grid-2">
+  <div class="def-box border-teal bg-teal">
+    <div class="db-label c-teal">Sucesos compatibles e incompatibles</div>
+    <div class="db-text"><b>Compatibles:</b> pueden ocurrir a la vez (A &cap; B &ne; &empty;).<br><b>Incompatibles</b> (mutuamente excluyentes): no pueden ocurrir a la vez (A &cap; B = &empty;).<br>Ejemplos: par e impar son incompatibles en un dado.</div>
+  </div>
+  <div class="def-box border-violet bg-violet">
+    <div class="db-label c-violet">Sucesos contrarios</div>
+    <div class="db-text">Son incompatibles y juntos forman el espacio muestral:<br>A &cup; &Acirc; = E &nbsp; y &nbsp; A &cap; &Acirc; = &empty;<br>Ejemplo: sacar par / sacar impar en un dado.</div>
+  </div>
+</div>
+
+<div class="sh c-amber">Regla de Laplace</div>
+<div class="formula border-amber">
+  <div class="f-label c-amber">Regla de Laplace (equiprobabilidad)</div>
+  <div class="f-main">P(A) = casos favorables / casos posibles totales</div>
+  <div class="f-note">V&aacute;lida cuando todos los resultados son equiprobables &nbsp;|&nbsp; 0 &le; P(A) &le; 1</div>
+</div>
+<div class="formula border-teal">
+  <div class="f-label c-teal">Suceso contrario</div>
+  <div class="f-main">P(&Acirc;) = 1 &minus; P(A)</div>
+</div>
+
+<div class="sh c-amber">Probabilidad compuesta</div>
+<div class="grid-2">
+  <div class="formula border-amber">
+    <div class="f-label c-amber">Uni&oacute;n (f&oacute;rmula general)</div>
+    <div class="f-main">P(A&cup;B) = P(A)+P(B)&minus;P(A&cap;B)</div>
+    <div class="f-note">Si A y B son <b>incompatibles</b>: P(A&cup;B)=P(A)+P(B)</div>
+  </div>
+  <div class="formula border-blue">
+    <div class="f-label c-blue">Intersecci&oacute;n (sucesos independientes)</div>
+    <div class="f-main">P(A&cap;B) = P(A) &middot; P(B)</div>
+    <div class="f-note"><b>Solo v&aacute;lida si A y B son independientes</b></div>
+  </div>
+</div>
+<div class="grid-2">
+  <div class="def-box border-blue bg-blue">
+    <div class="db-label c-blue">Sucesos independientes</div>
+    <div class="db-text">El resultado de uno NO afecta al del otro.<br>Ejemplos: lanzar dos dados, sacar una carta y volverla a meter.</div>
+  </div>
+  <div class="def-box border-rose bg-rose">
+    <div class="db-label c-rose">Sucesos dependientes</div>
+    <div class="db-text">El resultado de uno S&Iacute; influye en el del otro.<br>Ejemplo: extraer bolas <b>sin reposici&oacute;n</b> (el espacio muestral cambia).</div>
+  </div>
+</div>
+
+<div class="sh c-amber">Probabilidad experimental</div>
+<div class="formula border-amber">
+  <div class="f-label c-amber">Frecuencia relativa como probabilidad experimental</div>
+  <div class="f-main">P<sub>exp</sub>(A) = f<sub>i</sub>(A) / n</div>
+  <div class="f-note">f<sub>i</sub>(A) = n.&ordm; de veces que ocurri&oacute; A &nbsp;|&nbsp; n = n.&ordm; de repeticiones<br>
+  <b>Ley de los grandes n&uacute;meros:</b> cuando n &rarr; &infin;, P<sub>exp</sub> &rarr; P<sub>te&oacute;rica</sub></div>
+</div>
+
+<div class="solved">
+  <div class="s-label c-amber">Ejemplo resuelto 1 &mdash; Uni&oacute;n con sucesos compatibles</div>
+  <div class="s-q">Dado de 6 caras. A = n&uacute;mero par; B = n&uacute;mero mayor que 3. Calcula P(A&cup;B).</div>
+  <div class="step"><div class="step-n" style="background:var(--amber)">1</div><div class="step-t">A={2,4,6} &rarr; P(A)=3/6=1/2. B={4,5,6} &rarr; P(B)=3/6=1/2</div></div>
+  <div class="step"><div class="step-n" style="background:var(--amber)">2</div><div class="step-t">A&cap;B={4,6} &rarr; P(A&cap;B)=2/6=1/3</div></div>
+  <div class="step"><div class="step-n" style="background:var(--amber)">3</div><div class="step-t">P(A&cup;B)=1/2+1/2&minus;1/3=3/6+3/6&minus;2/6=4/6=2/3</div></div>
+  <span class="step-r bg-amber c-amber">P(A&cup;B) = 2/3</span>
+</div>
+
+<div class="solved">
+  <div class="s-label c-amber">Ejemplo resuelto 2 &mdash; Sin reposici&oacute;n (dependientes)</div>
+  <div class="s-q">Urna con 4 bolas rojas y 3 azules. Se extraen 2 sin reposici&oacute;n. P(las dos rojas) y P(una de cada color).</div>
+  <div class="step"><div class="step-n" style="background:var(--amber)">1</div><div class="step-t">P(2 rojas) = P(1.&ordf; roja) &middot; P(2.&ordf; roja | 1.&ordf; roja) = 4/7 &middot; 3/6 = 12/42 = 2/7</div></div>
+  <div class="step"><div class="step-n" style="background:var(--amber)">2</div><div class="step-t">P(roja 1.&ordf;, azul 2.&ordf;) = 4/7 &middot; 3/6 = 2/7 &nbsp; P(azul 1.&ordf;, roja 2.&ordf;) = 3/7 &middot; 4/6 = 2/7</div></div>
+  <div class="step"><div class="step-n" style="background:var(--amber)">3</div><div class="step-t">P(una de cada) = 2/7 + 2/7 = 4/7</div></div>
+  <span class="step-r bg-amber c-amber">P(2 rojas)=2/7 &middot; P(una de cada)=4/7</span>
+</div>
+
+<div class="sum-strip bg-amber">
+  <h4 class="c-amber">Resumen Probabilidad</h4>
+  <div class="sum-grid">
+    <div class="sum-pill"><strong>Laplace</strong><span>P(A)=fav/pos</span></div>
+    <div class="sum-pill"><strong>Contrario</strong><span>P(&Acirc;)=1&minus;P(A)</span></div>
+    <div class="sum-pill"><strong>Uni&oacute;n</strong><span>P(A)+P(B)&minus;P(A&cap;B)</span></div>
+    <div class="sum-pill"><strong>Incompatibles</strong><span>P(A)+P(B)</span></div>
+    <div class="sum-pill"><strong>Independientes</strong><span>P(A)&middot;P(B)</span></div>
+    <div class="sum-pill"><strong>P. experimental</strong><span>f<sub>i</sub>/n</span></div>
+  </div>
+</div>
+</div>
+
+<div class="tab-content" id="tab-ejercicios">
+<div class="page-header">
+  <div class="ph-tag c-pink">Pr&aacute;ctica</div>
+  <h2>Ejercicios Finales</h2>
+  <p>10 ejercicios por bloque, de menor a mayor dificultad. Pulsa &#9660; para ver el resultado.</p>
+</div>
+<div class="ex-section"><div class="ex-section-header" style="border-color:var(--blue)"><span style="font-size:18px">&#x1F522;</span><h3 class="c-blue">N&uacute;meros y Operaciones</h3><span class="ex-count">10 ejercicios</span></div><div id="ex-numeros"></div></div>
+<div class="ex-section"><div class="ex-section-header" style="border-color:var(--violet)"><span style="font-size:18px">&#x270F;&#xFE0F;</span><h3 class="c-violet">&Aacute;lgebra</h3><span class="ex-count">10 ejercicios</span></div><div id="ex-algebra"></div></div>
+<div class="ex-section"><div class="ex-section-header" style="border-color:var(--teal)"><span style="font-size:18px">&#x1F4C8;</span><h3 class="c-teal">Funciones</h3><span class="ex-count">10 ejercicios</span></div><div id="ex-funciones"></div></div>
+<div class="ex-section"><div class="ex-section-header" style="border-color:var(--orange)"><span style="font-size:18px">&#x1F4D0;</span><h3 class="c-orange">Geometr&iacute;a</h3><span class="ex-count">10 ejercicios</span></div><div id="ex-geometria"></div></div>
+<div class="ex-section"><div class="ex-section-header" style="border-color:var(--cyan)"><span style="font-size:18px">&#x27A1;&#xFE0F;</span><h3 class="c-cyan">Vectores</h3><span class="ex-count">10 ejercicios</span></div><div id="ex-vectores"></div></div>
+<div class="ex-section"><div class="ex-section-header" style="border-color:var(--rose)"><span style="font-size:18px">&#x1F52D;</span><h3 class="c-rose">Semejanza</h3><span class="ex-count">10 ejercicios</span></div><div id="ex-semejanza"></div></div>
+<div class="ex-section"><div class="ex-section-header" style="border-color:var(--green)"><span style="font-size:18px">&#x1F4CA;</span><h3 class="c-green">Estad&iacute;stica</h3><span class="ex-count">10 ejercicios</span></div><div id="ex-estadistica"></div></div>
+<div class="ex-section"><div class="ex-section-header" style="border-color:var(--amber)"><span style="font-size:18px">&#x1F3B2;</span><h3 class="c-amber">Probabilidad</h3><span class="ex-count">10 ejercicios</span></div><div id="ex-probabilidad"></div></div>
+</div>
+
+<script>
+const tabs = {
+  numeros:     { title: 'N\u00fameros y Operaciones',   sub: 'Potencias, ra\u00edces, notaci\u00f3n cient\u00edfica, proporcionalidad' },
+  algebra:     { title: '\u00c1lgebra',                  sub: 'Polinomios, Ruffini, ecuaciones, sistemas' },
+  funciones:   { title: 'Funciones',                sub: 'Lineal, cuadr\u00e1tica, an\u00e1lisis' },
+  geometria:   { title: 'Geometr\u00eda',               sub: '\u00c1reas, vol\u00famenes, cuerpos, Pit\u00e1goras' },
+  vectores:    { title: 'Vectores en el plano',     sub: 'Operaciones, m\u00f3dulo, producto escalar' },
+  semejanza:   { title: 'Semejanza',                sub: 'Tales, raz\u00f3n, criterios, escalas' },
+  estadistica: { title: 'Estad\u00edstica',             sub: 'Frecuencias (fi,hi,Fi,Hi), medidas, gr\u00e1ficos' },
+  probabilidad:{ title: 'Probabilidad',             sub: 'Laplace, sucesos, probabilidad compuesta' },
+  ejercicios:  { title: 'Ejercicios Finales',       sub: 'Pr\u00e1ctica por bloques con soluciones' },
+};
+
+function showTab(name){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  document.querySelector('[data-tab="'+name+'"]').classList.add('active');
+  document.getElementById('topbar-title').textContent=tabs[name].title;
+  document.getElementById('topbar-sub').textContent=tabs[name].sub;
+  window.scrollTo(0,0);
+  if(window.innerWidth<=768) closeSidebar();
+}
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>showTab(btn.dataset.tab));
+});
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+document.getElementById('overlay').addEventListener('click',closeSidebar);
+window.addEventListener('scroll',()=>{
+  const st=window.scrollY, dh=document.body.scrollHeight-window.innerHeight;
+  document.getElementById('progress-bar').style.width=(dh>0?(st/dh)*100:0)+'%';
+});
+
+/* ── EXERCISES DATA (higher difficulty) ── */
+const exData = {
+  numeros: [
+    { q: 'Simplifica: (3<sup>4</sup> &middot; 3<sup>&minus;2</sup>) / 3<sup>3</sup>', a: '3<sup>&minus;1</sup> = 1/3', d:1 },
+    { q: 'Expresa en notaci&oacute;n cient&iacute;fica: 0,00000721', a: '7,21 &times; 10<sup>&minus;6</sup>', d:1 },
+    { q: 'Simplifica: &radic;(75) &minus; &radic;(27)', a: '5&radic;3 &minus; 3&radic;3 = 2&radic;3', d:2 },
+    { q: 'Racionaliza: 4 / (3 &minus; &radic;5)', a: '(12+4&radic;5)/4 = 3+&radic;5', d:2 },
+    { q: 'Opera: (2,4&times;10<sup>6</sup>) &divide; (6&times;10<sup>&minus;2</sup>)', a: '4&times;10<sup>7</sup>', d:2 },
+    { q: 'Un ordenador vale 1 200 &euro;. Baja un 15% el primer a&ntilde;o y otro 10% el segundo. &iquest;Cu&aacute;nto vale al final?', a: '918 &euro;', d:2 },
+    { q: 'Halla x si 2<sup>x+1</sup> = 32', a: 'x = 4', d:2 },
+    { q: 'Simplifica: (x<sup>2/3</sup> &middot; x<sup>1/2</sup>) / x<sup>1/6</sup>', a: 'x', d:3 },
+    { q: 'Si A tarda 6 h y B tarda 4 h en llenar un dep&oacute;sito trabajando solos, &iquest;cu&aacute;nto tardan juntos?', a: '12/5 = 2 h 24 min', d:3 },
+    { q: 'Calcula &radic;(8) + 2&radic;(18) &minus; &radic;(50)', a: '2&radic;2 + 6&radic;2 &minus; 5&radic;2 = 3&radic;2', d:3 },
+  ],
+  algebra: [
+    { q: 'Factoriza: 4x<sup>2</sup> &minus; 36', a: '4(x+3)(x&minus;3)', d:1 },
+    { q: 'Resuelve: x<sup>2</sup> &minus; 7x + 12 = 0', a: 'x=3 y x=4', d:1 },
+    { q: 'Divide P(x)=x<sup>3</sup>&minus;2x<sup>2</sup>&minus;x+2 entre (x&minus;1) usando Ruffini', a: 'Cociente: x<sup>2</sup>&minus;x&minus;2; resto: 0', d:2 },
+    { q: 'Factoriza completamente: x<sup>3</sup>&minus;2x<sup>2</sup>&minus;x+2', a: '(x&minus;1)(x+1)(x&minus;2)', d:2 },
+    { q: 'Resuelve la ecuaci&oacute;n bicuadrada: x<sup>4</sup>&minus;13x<sup>2</sup>+36=0', a: 'x=&plusmn;2 y x=&plusmn;3', d:2 },
+    { q: 'Resuelve el sistema: 2x&minus;3y=1 ; 5x+2y=12', a: 'x=2, y=1', d:2 },
+    { q: 'El triple de un n&uacute;mero menos el doble de otro es 5. La suma de los dos n&uacute;meros es 8. H&aacute;llalos.', a: 'x=29/5=5,8 ; y=11/5=2,2', d:3 },
+    { q: 'Factoriza: 2x<sup>3</sup>+x<sup>2</sup>&minus;5x+2 (usa Ruffini)', a: '(x&minus;1)(2x&minus;1)(x+2) &mdash; Comprueba que P(1)=0 y P(1/2)=0', d:3 },
+    { q: 'Resuelve la ecuaci&oacute;n: x<sup>4</sup>&minus;5x<sup>2</sup>&minus;36=0', a: 'x=&plusmn;3 (t=9); t=&minus;4 se descarta', d:3 },
+    { q: 'Un rect&aacute;ngulo tiene per&iacute;metro 22 cm y &aacute;rea 28 cm<sup>2</sup>. Halla sus dimensiones.', a: 'Lados 4 cm y 7 cm', d:3 },
+  ],
+  funciones: [
+    { q: 'La recta y=&minus;3x+5, &iquest;cu&aacute;l es su pendiente y su ordenada en el origen?', a: 'm=&minus;3 ; b=5', d:1 },
+    { q: 'Halla f(2) y f(&minus;1) si f(x)=x<sup>2</sup>&minus;3x+1', a: 'f(2)=&minus;1 ; f(&minus;1)=5', d:1 },
+    { q: 'Halla la ecuaci&oacute;n de la recta paralela a y=4x&minus;2 que pasa por (0,7)', a: 'y=4x+7', d:2 },
+    { q: 'Para y=2x<sup>2</sup>&minus;8x+6, halla el v&eacute;rtice y los ceros', a: 'V=(2,&minus;2); ceros x=1 y x=3', d:2 },
+    { q: 'Determina los intervalos de crecimiento y decrecimiento de f(x)=&minus;x<sup>2</sup>+6x&minus;5', a: 'Creciente en (&minus;&infin;,3); decreciente en (3,+&infin;)', d:2 },
+    { q: 'Dos rectas se cortan en el punto (2,3). Una tiene pendiente 2. Halla la ecuaci&oacute;n de ambas rectas si la otra es perpendicular.', a: 'y=2x&minus;1 y y=&minus;x/2+4', d:2 },
+    { q: 'Una funci&oacute;n a trozos: f(x)=x+1 si x&lt;2; f(x)=3 si x=2; f(x)=5&minus;x si x&gt;2. Calcula f(0), f(2), f(4) y el cero para x&gt;2.', a: 'f(0)=1; f(2)=3; f(4)=1; cero en x=5', d:3 },
+    { q: 'Halla los puntos de intersecci&oacute;n de y=x<sup>2</sup>&minus;1 e y=x+1', a: '(2,3) y (&minus;1,0)', d:3 },
+    { q: 'La recta que pasa por A(a,2) y B(3,6) tiene pendiente 4/5. Halla a.', a: 'a=&minus;2', d:3 },
+    { q: 'Demuestra que la par&aacute;bola y=x<sup>2</sup>&minus;4x+5 no corta al eje X.', a: '&Delta;=16&minus;20=&minus;4&lt;0, sin ra&iacute;ces reales', d:3 },
+  ],
+  geometria: [
+    { q: 'Halla la hipotenusa de un tri&aacute;ngulo rect&aacute;ngulo con catetos 8 y 15.', a: '17', d:1 },
+    { q: 'Calcula el &aacute;rea de un trapecio de bases 5 y 9 cm y altura 4 cm.', a: '28 cm<sup>2</sup>', d:1 },
+    { q: 'Un cilindro tiene r=4 cm y h=10 cm. Calcula &aacute;rea total y volumen.', a: 'A=112&pi; cm<sup>2</sup>&asymp;351,9 cm<sup>2</sup>; V=160&pi; cm<sup>3</sup>&asymp;502,7 cm<sup>3</sup>', d:2 },
+    { q: 'Una esfera tiene di&aacute;metro 10 cm. Calcula su &aacute;rea y volumen.', a: 'A=100&pi;&asymp;314,2 cm<sup>2</sup>; V=500&pi;/3&asymp;523,6 cm<sup>3</sup>', d:2 },
+    { q: 'Pir&aacute;mide de base cuadrada con lado 8 cm y altura 3 cm. Calcula &aacute;rea lateral y volumen.', a: 'A<sub>lat</sub>=4&middot;(8&middot;5/2)=80 cm<sup>2</sup>; V=64 cm<sup>3</sup> (apotema de cara=5)', d:2 },
+    { q: 'La diagonal de un cubo mide &radic;48 cm. Halla la arista y el volumen.', a: 'Arista a: &radic;3&middot;a=&radic;48 &rarr; a=4 cm; V=64 cm<sup>3</sup>', d:3 },
+    { q: 'Un cono de r=3 y h=4 se inscribe en un cilindro de r=3 y h=4. &iquest;Qu&eacute; porcentaje del volumen del cilindro ocupa el cono?', a: '33,3% (V<sub>cono</sub>=12&pi;; V<sub>cilindro</sub>=36&pi;; cociente=1/3)', d:3 },
+    { q: 'Halla el &aacute;rea del sector circular con r=6 cm y &aacute;ngulo central 120&deg;.', a: '12&pi; cm<sup>2</sup>&asymp;37,7 cm<sup>2</sup>', d:2 },
+    { q: 'Un prisma triangular equil&aacute;tero tiene lado 6 cm y altura 10 cm. Calcula el volumen.', a: 'A<sub>base</sub>=9&radic;3 cm<sup>2</sup>; V=90&radic;3&asymp;155,9 cm<sup>3</sup>', d:3 },
+    { q: 'El &aacute;rea de la superficie de una esfera es 144&pi; cm<sup>2</sup>. Halla el radio y el volumen.', a: 'r=6 cm; V=288&pi;&asymp;904,8 cm<sup>3</sup>', d:3 },
+  ],
+  vectores: [
+    { q: 'Dados A(1,3) y B(5,7), calcula el vector AB y su m&oacute;dulo.', a: 'AB=(4,4); |AB|=4&radic;2', d:1 },
+    { q: 'Calcula 3u &minus; 2v siendo u=(2,&minus;1) y v=(1,3).', a: '(4,&minus;9)', d:1 },
+    { q: '&iquest;Son perpendiculares u=(3,4) y v=(8,&minus;6)?', a: 'S&iacute;: u&middot;v=24&minus;24=0', d:2 },
+    { q: 'Halla el punto medio de A(&minus;3,2) y B(7,&minus;4).', a: 'M=(2,&minus;1)', d:1 },
+    { q: 'Calcula el &aacute;ngulo entre u=(1,0) y v=(1,&radic;3).', a: '60&deg; (cos&alpha;=1/2)', d:2 },
+    { q: 'Halla las coordenadas del punto C tal que el punto medio de AC es M(3,4) y A=(1,2).', a: 'C=(5,6)', d:2 },
+    { q: 'Halla k para que u=(k,3) y v=(4,&minus;6) sean paralelos.', a: 'k=&minus;2 (k&middot;(&minus;6)&minus;3&middot;4=0 &rarr; k=&minus;2)', d:3 },
+    { q: 'Halla el baricentro del tri&aacute;ngulo A(2,1), B(6,3), C(4,5).', a: 'G=(4,3)', d:2 },
+    { q: 'Calcula |u+v| y |u&minus;v| siendo u=(3,4) y v=(0,5). &iquest;Cu&aacute;l es mayor?', a: '|u+v|=&radic;74; |u&minus;v|=&radic;10; mayor |u+v|', d:3 },
+    { q: 'El punto M(2,3) es el punto medio de AB. Si A=(a,1) y B=(4,b), halla a y b.', a: 'a=0; b=5', d:3 },
+  ],
+  semejanza: [
+    { q: 'En un plano a escala 1:200, la sala mide 3 cm. &iquest;Cu&aacute;ntos metros mide en realidad?', a: '6 m', d:1 },
+    { q: 'Dos tri&aacute;ngulos semejantes tienen &aacute;reas 16 cm<sup>2</sup> y 64 cm<sup>2</sup>. &iquest;Cu&aacute;l es la raz&oacute;n de semejanza?', a: 'k=2 (k<sup>2</sup>=4)', d:2 },
+    { q: 'En △ABC, MN||BC, AM=6, AB=10. Calcula MN si BC=8.', a: 'MN=4,8 cm (raz&oacute;n AM/AB=6/10=3/5)', d:2 },
+    { q: 'Una maqueta a escala 1:50 tiene volumen 8 cm<sup>3</sup>. &iquest;Cu&aacute;l es el volumen real en m<sup>3</sup>?', a: '8&times;50<sup>3</sup>=1 000 000 cm<sup>3</sup>=1 m<sup>3</sup>', d:3 },
+    { q: 'Tres rectas paralelas a, b, c cortan dos transversales. En la primera determinan segmentos 3, 5. En la segunda el primer segmento mide 4. Halla el segundo.', a: '20/3 cm', d:2 },
+    { q: 'Un tr&aacute;ngulo tiene lados 5, 12, 13 cm. Otro semejante tiene el lado mayor de 26 cm. Halla los otros lados y el &aacute;rea del mayor.', a: 'Lados 10, 24, 26 cm; &Aacute;rea=120 cm<sup>2</sup>', d:3 },
+    { q: 'Una fotograf&iacute;a de 6&times;4 cm se ampliar&aacute; con k=2,5. Halla las nuevas dimensiones y la raz&oacute;n de &aacute;reas.', a: '15&times;10 cm; raz&oacute;n &aacute;reas=6,25', d:2 },
+    { q: 'Un edificio proyecta una sombra de 24 m. Una persona de 1,8 m proyecta 1,2 m de sombra. &iquest;Cu&aacute;nto mide el edificio?', a: '36 m', d:2 },
+    { q: 'En △ABC, MN||BC, AM/MB=2/3. Calcula AN/NC y el &aacute;rea de △AMN si &aacute;rea de △ABC=100 cm<sup>2</sup>.', a: 'AN/NC=2/3; k=2/5; k<sup>2</sup>=4/25; A<sub>AMN</sub>=16 cm<sup>2</sup>', d:3 },
+    { q: 'Dos cilindros semejantes tienen raz&oacute;n de semejanza 3:2. El menor tiene volumen 40&pi; cm<sup>3</sup>. Calcula el volumen del mayor.', a: 'V=40&pi;&times;(27/8)=135&pi; cm<sup>3</sup>', d:3 },
+  ],
+  estadistica: [
+    { q: 'Datos: 3, 5, 7, 5, 9, 5. Halla la moda y la mediana.', a: 'Mo=5; Me=(5+5)/2=5', d:1 },
+    { q: 'Calcula la media de: 10, 14, 8, 12, 16.', a: 'x&#772;=12', d:1 },
+    { q: 'Los datos 2,4,6,8,10 tienen media 6. Calcula la varianza.', a: '&sigma;<sup>2</sup>=(16+4+0+4+16)/5=8', d:2 },
+    { q: 'En una clase, 8 alumnos sacan 6, 10 sacan 7 y 2 sacan 9. Calcula la media ponderada.', a: 'x&#772;=(48+70+18)/20=136/20=6,8', d:2 },
+    { q: 'Construye la tabla f<sub>i</sub>, h<sub>i</sub>, F<sub>i</sub>, H<sub>i</sub> para los datos: 2,3,3,4,4,4,5,5,6. Calcula la mediana.', a: 'F<sub>i</sub>: 1,3,6,8,9. Mediana=dato 5.&ordm;=4', d:2 },
+    { q: 'Las alturas de 5 alumnos son 162, 170, 175, 168, 175. Halla media, moda y desv. t&iacute;pica.', a: 'x&#772;=170; Mo=175; &sigma;<sup>2</sup>=26; &sigma;&asymp;5,1', d:2 },
+    { q: 'Una empresa tiene 5 empleados con salarios (k&euro;): 18,20,22,24,120. &iquest;Qu&eacute; medida de centralizaci&oacute;n es m&aacute;s representativa y por qu&eacute;?', a: 'La mediana (22 k&euro;): la media (40,8 k&euro;) est&aacute; distorsionada por el valor at&iacute;pico 120', d:3 },
+    { q: 'Datos agrupados: [0,10) f<sub>i</sub>=4; [10,20) f<sub>i</sub>=8; [20,30) f<sub>i</sub>=6; [30,40) f<sub>i</sub>=2. Calcula la media.', a: 'x&#772;=(4&times;5+8&times;15+6&times;25+2&times;35)/20=(20+120+150+70)/20=360/20=18', d:3 },
+    { q: 'Halla el valor de x para que la media de 7,9,x,11,8 sea 9.', a: 'x=10', d:2 },
+    { q: 'Cuatro valores tienen media 12 y desv. t&iacute;pica 2. Se a&ntilde;ade un valor 12. &iquest;Cu&aacute;les son la nueva media y la nueva desv. t&iacute;pica?', a: 'Media=12 (no cambia); &sigma; disminuye: nueva &sigma;<sup>2</sup>=(4&times;4+0)/5=16/5=3,2; &sigma;&asymp;1,79', d:3 },
+  ],
+  probabilidad: [
+    { q: 'Se lanza un dado. P(sacar un m&uacute;ltiplo de 3).', a: 'P=2/6=1/3', d:1 },
+    { q: 'Baraja espa&ntilde;ola (40 cartas). P(sacar una figura: rey, caballo o sota).', a: 'P=12/40=3/10', d:1 },
+    { q: 'P(A)=0,3 y P(B)=0,5, con A y B incompatibles. Calcula P(A&cup;B).', a: '0,8', d:2 },
+    { q: 'Se lanza un dado dos veces. P(que la suma sea 7).', a: '6/36=1/6 (pares favorables: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1))', d:2 },
+    { q: 'P(A)=2/5, P(B)=1/3, P(A&cap;B)=1/10. Calcula P(A&cup;B).', a: '2/5+1/3&minus;1/10=12/30+10/30&minus;3/30=19/30', d:2 },
+    { q: 'Urna con 3R, 4A, 2V. Se extrae una bola. P(que no sea azul).', a: 'P=5/9', d:2 },
+    { q: 'Se extraen 2 cartas SIN reposici&oacute;n de una baraja de 40. P(las dos sean ases).', a: 'P=4/40&times;3/39=12/1560=1/130', d:3 },
+    { q: 'En un grupo, el 60% practica deporte, el 40% toca un instrumento y el 25% hace ambas cosas. &iquest;Qu&eacute; probabilidad hay de que no haga ninguna de las dos?', a: 'P(D&cup;I)=0,6+0,4&minus;0,25=0,75; P(ninguna)=0,25', d:3 },
+    { q: 'Se lanzan tres monedas. P(obtener exactamente 2 caras).', a: '3/8 (casos favorables: CCX,CXC,XCC)', d:3 },
+    { q: 'Urna A: 3R 2A. Urna B: 2R 4A. Se escoge una urna al azar y se extrae una bola. &iquest;P(bola roja)?', a: 'P=1/2&times;3/5+1/2&times;2/6=3/10+1/6=9/30+5/30=14/30=7/15', d:3 },
+  ],
+};
+
+function diffLabel(d){
+  if(d===1) return '<span class="diff diff-1">F\u00e1cil</span>';
+  if(d===2) return '<span class="diff diff-2">Medio</span>';
+  return '<span class="diff diff-3">Dif\u00edcil</span>';
+}
+const colors={
+  numeros:'var(--blue)',algebra:'var(--violet)',funciones:'var(--teal)',
+  geometria:'var(--orange)',vectores:'var(--cyan)',semejanza:'var(--rose)',
+  estadistica:'var(--green)',probabilidad:'var(--amber)'
+};
+Object.entries(exData).forEach(([block,items])=>{
+  const container=document.getElementById('ex-'+block);
+  if(!container) return;
+  const col=colors[block];
+  items.forEach((item,i)=>{
+    const div=document.createElement('div');
+    div.className='ex-item';
+    div.innerHTML=`<div class="ex-q" onclick="this.parentElement.classList.toggle('open')">
+      <div class="ex-num" style="background:${col}">${i+1}</div>
+      <div class="ex-text">${item.q} ${diffLabel(item.d)}</div>
+      <div class="ex-toggle">&#9660;</div></div>
+      <div class="ex-ans"><div class="ans-label">Resultado</div>
+      <div class="ans-val" style="color:${col}">${item.a}</div></div>`;
+    container.appendChild(div);
+  });
+});
+</script>
+</body></html>
